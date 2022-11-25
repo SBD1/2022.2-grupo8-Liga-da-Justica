@@ -1,1 +1,17 @@
-# 2022.2-grupo7-Liga-da-Justi-a
+# Grupo7- Liga da Justiça
+
+
+## Alunos
+
+| Nome                               | Matrícula  | 
+|------------------------------------|------------| 
+| Iago de Paula de Cabral           | 190088745  |
+| João Victor Correia de Oliveira              | 190089792  | 
+| Matheus Moreira Lopes Perillo         | 190093421  | 
+| Matehus Soares Arruda | 190093480  | 
+| Vitor Manoel Aquino de Brito      | 200028677  |      
+
+
+# Sobre o Projeto
+
+
