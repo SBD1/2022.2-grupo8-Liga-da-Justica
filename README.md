@@ -1,0 +1,1 @@
+# 2022.2-grupo7-Liga-da-Justi-a
