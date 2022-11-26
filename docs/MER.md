@@ -98,7 +98,7 @@
 **Inventário carrega Instância de Item**
 - Um Inventário pode carregar nenhuma ou várias Instâncias de itens(0,n). Uma Instância de Item pode ser carregado por nenhum ou um inventário(0,1). 
 
-**Instancia_Item referencia Item **
+**Instancia_Item referencia Item**
 
 - Uma instância de item pode referenciat somente um item (1,1). Um item pode ser referenciado por nenhuma instancia de item ou várias (0,n).
 
