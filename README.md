@@ -8,7 +8,7 @@
 | Iago de Paula de Cabral           | 190088745  |
 | João Victor Correia de Oliveira              | 190089792  | 
 | Matheus Moreira Lopes Perillo         | 190093421  | 
-| Matehus Soares Arruda | 190093480  | 
+| Matheus Soares Arruda | 190093480  | 
 | Vitor Manoel Aquino de Brito      | 200028677  |      
 
 
