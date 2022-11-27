@@ -3,11 +3,10 @@
   |Data|Versão|Autor|Alteração| 
   |----|------|---------|-----|
   |27/11/2022|1.0| [João Victor](https://github.com/CorreiaJV),  [Matheus Soares](https://github.com/MtsSrs), [Vitor Manoel](https://github.com/Vitormanoel17) , [Iago Cabral](https://github.com/iagocabral) | Versão Inicial do Modelo relacional(MREL)|
-
+  |27/11/2022|  1.1   | [João Victor](https://github.com/CorreiaJV) | Adição introdução do documento | 
   
 # Modelo Relacional
- 
- 
+ O Modelo Relacional(MREL) apresenta um diagrama lógico de como as entidades e seus devidos relacionamentos serão mapeados no bando de dados, por isso é um modelo não atrelado a nenhum tipo de sistema de gerenciamento de banco de dados (SGBD) específico. 
 
 ## 2. DER
 <img src= 'imgs/MREL.png'> </img>

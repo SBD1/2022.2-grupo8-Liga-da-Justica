@@ -1,15 +1,18 @@
-# Modelo Entidade-Relacionamento
 
-## 1. Versionamento
+## Versionamento
+
 |Data | Versão | Autor | Alterações | 
 |:--:|:------:| ----------------------------------------- | -------- | 
-|25/11/2022|  1.0   | Matheus Soares & João Victor Correia & Vitor Manoel | Criação do documento MER | 
+|25/11/2022|  1.0   |  [Matheus Soares](https://github.com/MtsSrs), [Vitor Manoel](https://github.com/Vitormanoel17) , [João Victor](https://github.com/CorreiaJV)  | Criação do documento MER | 
+  |27/11/2022|  1.1   | [João Victor](https://github.com/CorreiaJV) | Adição introdução do documento | 
 
-<div style="text-align: center">
-<p>Tabela 1: Versionamento</p>
-</div>
 
-## 2. Entidades
+
+# Modelo Entidade-Relacionamento
+
+O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve os objetos (entidades) envolvidos em um negócio, com suas características (atributos) e como elas se relacionam entre si (relacionamentos).
+
+## 1. Entidades
 - **Personagem**
 - **Raça**
     - **Humano**
@@ -44,7 +47,7 @@
 - **Poderes**
 - **Missão**
 
-## 3. Atributos
+## 2. Atributos
 - **Personagem**: <ins>ID_Personagem</ins>, experiência, nível, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeStamina, MAX_PontosDeStamina, QTD_Honra, QTD_Defesa, QTD_Ataque;
 - **Raça**: <ins>ID_Raça</ins>, Nome, IND_Velocidade, IND_Furtividade, IND_Magia, IND_Força, IND_Carisma, IND_Percepção;
     - **Humano**
@@ -77,7 +80,7 @@
 - **Poderes**: <ins>ID_Poderes</ins>, Velocidade, Furtividade, Magia, Força, Carisma, Percepção.
 - **Missão**: <ins>ID_Missão</ins>, Nível_min, REQ_Facção, REQ_Honra;
 
-## 4. Relacionamentos
+## 3. Relacionamentos
 
 **Personagem possui Classe**
 - Um Personagem pode possuir no mínimo uma classe, e no máximo uma classe (1,1). Uma Classe pode ser pertencida por  no mínimo nenhum personagem ou vários (0,n);

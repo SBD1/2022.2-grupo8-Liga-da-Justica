@@ -1,16 +1,22 @@
-  |Data|Versão|Alteração|Autor| 
+  ## Versionamento
+  |Data|Versão|Autor|Alteração| 
   |----|------|---------|-----|
-  |27/11/2022|1.0| Versão Inicial do Dicionário de Dados |[João Victor](https://github.com/CorreiaJV) & [Matheus Soares](https://github.com/MtsSrs)  & [Matheus Perillo](https://github.com/MatheusPerillo) & [Vitor Manoel](https://github.com/Vitormanoel17) & [Iago Cabral](https://github.com/iagocabral)|
-  
+  |27/11/2022|1.0| [João Victor](https://github.com/CorreiaJV),  [Matheus Soares](https://github.com/MtsSrs),  [Matheus Perillo](https://github.com/MatheusPerillo), [Vitor Manoel](https://github.com/Vitormanoel17) , [Iago Cabral](https://github.com/iagocabral) | Versão Inicial do Dicionário de Dados|
+  |27/11/2022|  1.1   | [João Victor](https://github.com/CorreiaJV) | Adição introdução do documento | 
  
 # Dicionário de Dados
+<p style="text-align: justify"> É o conjunto dos vocábulos ou dos termos utilizados na descrição dos objetos modelados para o banco de dados. Os termos são dispostos com o seu respectivo significado para apresentar uma descrição textual da estrutura lógica e física do banco de dados.
+</p>
+
+<br/>
+
 ## Entidade: Personagem
 #### Descrição: Personagem principal, será manuseado pelo jogador.
 
 
 |Variável| Nome Variável | Tipo | Descrição | Valores Permitidos | Possui valores nulo? | 
 | :----: | :----: | :----: | :----: | :----: | :----: |
-|ID do personagem  | ID_Personagem | int | Identificação do personagem | 3 | não |
+|ID do personagem  | ID_Personagem | int | Identificação do personagem | 1-3 | não |
 | Experiência do personagem | Experiencia | int | Quantidade de experiência do personagem | 1-100 | não |
 | Nível do personagem | Nivel | int | Nível atual do personagem | 1-30 | não|
 | Nome do personagem | Nome | varchar | Nome do personagem jogável | 3-30 | não | 
@@ -29,14 +35,14 @@
 
 |Variável| Nome Variável | Tipo | Descrição | Valores permitidos| Possui valores nulo? |
 | :----: | :----: | :----: | :----: | :----: | :----: |
-| Id da raça  | ID_Raça | int | Identificador da raça | 1-5 | não | 
+| Id da raça  | ID_Raça | int | Identificador da raça | 1 - 5 | não | 
 | Nome | nome | varchar | Nome da raça | 1-10 | não | 
-| Indicador de Velocidade| IND_velocidade| int | Indicador de incremento de velocidade| 1-100 | não | 
-| Indicador de Furtividade| IND_furtividade| int | Indicador de incremento de furtividade| 1-100 | não | 
-| Indicador de Magia| IND_magia| int | Indicador de incremento de magia| 1-100 | não | 
-| Indicador de Força| IND_forca| int | Indicador de incremento de força| 1-100 | não | 
-| Indicador de Carisma| IND_carisma| int | Indicador de incremento de carisma| 1-100 | não | 
-| Indicador de Percepção| IND_percepcao| int | Indicador de incremento de percepção| 1-100 | não | 
+| Indicador de Velocidade| IND_velocidade| int | Indicador de incremento de velocidade| 1 - 100 | não | 
+| Indicador de Furtividade| IND_furtividade| int | Indicador de incremento de furtividade| 1 - 100 | não | 
+| Indicador de Magia| IND_magia| int | Indicador de incremento de magia| 1 - 100 | não | 
+| Indicador de Força| IND_forca| int | Indicador de incremento de força| 1 - 100 | não | 
+| Indicador de Carisma| IND_carisma| int | Indicador de incremento de carisma| 1 - 100 | não | 
+| Indicador de Percepção| IND_percepcao| int | Indicador de incremento de percepção| 1 - 100 | não | 
 
 
 
@@ -46,7 +52,7 @@
 
 |Variável| Nome Variável | Tipo | Descrição | Valores permitidos| Possui valores nulo? |
 | :----: | :----: | :----: | :----: | :----: | :----: | 
-|Identificador de Classe| ID_Classe | int | Identificador Único de Classe | 1-5 | não | 
+|Identificador de Classe| ID_Classe | int | Identificador Único de Classe | 1 - 5 | não | 
 
 
 ## Entidade: Velocista
