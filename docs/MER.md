@@ -73,7 +73,7 @@
         - **Arma**: MULT_Ataque;
         - **Armadura**: MULT_Defesa;
         - **Acessório**: MULT_Poder;
-    - **Consumível**: MULT_QTD_PontosDeVida, MULT_QTD_PontosDeStamina, MULT_Poder, MULT_Ataque, MULT_Poder
+    - **Consumível**: MULT_QTD_PontosDeVida, MULT_QTD_PontosDeStamina, MULT_Poder, MULT_Ataque.
 - **Poderes**: <ins>ID_Poderes</ins>, Velocidade, Furtividade, Magia, Força, Carisma, Percepção.
 - **Missão**: <ins>ID_Missão</ins>, Nível_min, REQ_Facção, REQ_Honra;
 
