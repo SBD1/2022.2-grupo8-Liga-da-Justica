@@ -1,5 +1,6 @@
 # Grupo7- Liga da Justiça
 
+<img src="docs/imgs/ligadajustica.jpg"></img>
 
 ## Alunos
 
