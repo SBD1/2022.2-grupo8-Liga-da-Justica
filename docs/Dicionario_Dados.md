@@ -2,7 +2,8 @@
   |Data|Versão|Autor|Alteração| 
   |----|------|---------|-----|
   |27/11/2022|1.0| [João Victor](https://github.com/CorreiaJV),  [Matheus Soares](https://github.com/MtsSrs),  [Matheus Perillo](https://github.com/MatheusPerillo), [Vitor Manoel](https://github.com/Vitormanoel17) , [Iago Cabral](https://github.com/iagocabral) | Versão Inicial do Dicionário de Dados|
-  |27/11/2022|  1.1   | [João Victor](https://github.com/CorreiaJV) | Adição introdução do documento | 
+  |27/11/2022|  1.1   | [João Victor](https://github.com/CorreiaJV) | Adição introdução do documento |
+  |27/11/2022|  1.2   | [Matheus Soares](https://github.com/MtsSrs), [Matheus Perillo](https://github.com/MatheusPerillo) | Adição das chaves estrangeiras |
  
 # Dicionário de Dados
 <p style="text-align: justify"> É o conjunto dos vocábulos ou dos termos utilizados na descrição dos objetos modelados para o banco de dados. Os termos são dispostos com o seu respectivo significado para apresentar uma descrição textual da estrutura lógica e física do banco de dados.
@@ -28,7 +29,8 @@
 | Honra | QTD_Honra | int | Quantidade de honra que o personagem possui | 1-100 | não |
 | Defesa | QTD_Defesa | int | Quantidade de defesa que o personagem possui | 0-100 | não | 
 | Quantidade de ataque | QTD_Ataque | int | Quantidade de ataque que o personagem possui | 1-100 | não | 
-
+| Referência de ataque | poderes | int | Referência do poder do personagem | 0-3 | não |
+|Identificador de Região| Local_Atual | int | Identificador Único de Região| '1'= Gotham '2'= Metrópoles | não |
 
 ## Entidade: Raça
 #### Descrição: Conjunto de características intrínsecas do personagem alterando seus indicadores de poderes naturais.
@@ -43,7 +45,7 @@
 | Indicador de Força| IND_forca| int | Indicador de incremento de força| 1 - 100 | não | 
 | Indicador de Carisma| IND_carisma| int | Indicador de incremento de carisma| 1 - 100 | não | 
 | Indicador de Percepção| IND_percepcao| int | Indicador de incremento de percepção| 1 - 100 | não | 
-
+|ID do personagem  | personagem | int | Identificação do personagem | 1-3 | não |
 
 
 
@@ -53,7 +55,7 @@
 |Variável| Nome Variável | Tipo | Descrição | Valores permitidos| Possui valores nulo? |
 | :----: | :----: | :----: | :----: | :----: | :----: | 
 |Identificador de Classe| ID_Classe | int | Identificador Único de Classe | 1 - 5 | não | 
-
+|ID do personagem  | personagem | int | Identificação do personagem | 1-3 | não |
 
 ## Entidade: Velocista
 #### Descrição: Classe com indicadores de velocidade e percepção que alteram os poderes do jogador
@@ -109,7 +111,7 @@
 | identificador de facção | ID_Faccao  | int | Identificador único de facção | '1'=Herói '2'=Vilão| não | 
 | Nome | Nome | varchar | Nome da facção | 3-30 | não | 
 | Multiplicador de Honra | MULT_Honra | int | Multiplicador do atributo de honra do personagem | 1-5 | não | 
-
+|ID do personagem  | personagem | int | Identificação do personagem | 1-3 | não |
 
 
 ## Entidade: NPC
@@ -119,8 +121,7 @@
 | :----: | :----: | :----: | :----: | :----: | :----: | 
 |Identificador de NPC| ID_NPC | int | Identificador Único de NPC| 1-4 | não | 
 | Nome | Nome | varchar | Nome do NPC| 3-30 | não | 
-
-
+|ID do personagem  | personagem | int | Identificação do personagem | 1-3 | não |
 
 ## Entidade: Mercador
 #### Descrição: NPC negocia itens.
@@ -128,7 +129,6 @@
 |Variável| Nome Variável | Tipo | Descrição | Valores permitidos| Possui valores nulo? | 
 | :----: | :----: | :----: | :----: | :----: | :----: | 
 | Tipo| Tipo | varchar | Classificação do Mercador| 3-30 | sim | 
-
 
 ## Entidade: Inimigo
 #### Descrição: NPC hostil ao jogador.
@@ -164,6 +164,7 @@
 | Nome | Nome | varchar | Nome da Região | 3-30 | não | 
 | Posição X | posicao_x | int | Posição no eixo x dentro da região | 0 - 200 | não | 
 | Posição Y | posicao_y | int | Posição no eixo y dentro da região | 0 - 200 | não | 
+|Identificador de Mapa| LocalMapa | varchar | Identificador Único de Mapa| 1 | não |
 
 ## Entidade: Mapa
 #### Descrição: Conjunto de regiões.
@@ -190,7 +191,9 @@
 
 |Variável| Nome Variável | Tipo | Descrição | Valores permitidos| Possui valores nulo? | 
 | :----: | :----: | :----: | :----: | :----: | :----: | 
-| ID da instância do item | ID_InstaItem | int | Identificação da instância do item no inventário do personagem | 0-50 | não |    
+| ID da instância do item | ID_InstaItem | int | Identificação da instância do item no inventário do personagem | 0-50 | não |
+| ID do inventário | ID_Inventário | int | Identificação do inventário | 1 - 3 | não |
+|Referência de Item| item_ref | int | Referência única de Item| 0 - 500 | não |
 
 ## Entidade: Item
 #### Descrição: Itens que um jogador pode ter.
@@ -239,9 +242,6 @@
 | Multiplicador do pontos de poder | MULT_Poder | int |Consumível que aumenta a quantidade de pontos de poder | 0 - 100 | não | 
 | Multiplicador do pontos de ataque | MULT_Ataque | int | Consumível que aumenta a quantidade dos pontos de poder | 0 - 100 | não |
 
-
-
-
 ## Entidade: Poderes
 #### Descrição: Poderes distintos atribuídos a personagens diferentes.
 
@@ -264,3 +264,4 @@
 | Nivel Mínimo  |Nível_min  | int  | Nível mínimo do personagem para  realizar essa missão |1 - 30 | sim | 
 | Requisito de Facção  | REQ_Facção| Boolean | Requisito da necessidade de ter uma facção para realizar a missão  | 1 - 2  | sim |
 | Requisito de Honra | REQ_Honra | int |Requisito da necessidade de ter uma quantidade miníma de honra para realizar a missão |1 - 100 | sim | 
+|ID do personagem  | personagem | int | Identificação do personagem | 1-3 | não |
