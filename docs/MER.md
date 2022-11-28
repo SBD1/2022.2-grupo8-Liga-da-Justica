@@ -4,8 +4,8 @@
 |Data | Versão | Autor | Alterações | 
 |:--:|:------:| ----------------------------------------- | -------- | 
 |25/11/2022|  1.0   |  [Matheus Soares](https://github.com/MtsSrs), [Vitor Manoel](https://github.com/Vitormanoel17) , [João Victor](https://github.com/CorreiaJV)  | Criação do documento MER | 
-  |27/11/2022|  1.1   | [João Victor](https://github.com/CorreiaJV) | Adição introdução do documento | 
-
+|27/11/2022|  1.1   | [João Victor](https://github.com/CorreiaJV) | Adição introdução do documento | 
+|27/11/2022|  1.2   | [Matheus Soares](https://github.com/MtsSrs), [Matheus Perillo](https://github.com/MatheusPerillo) | Adição dos novos atributos |
 
 
 # Modelo Entidade-Relacionamento
@@ -48,29 +48,29 @@ O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve 
 - **Missão**
 
 ## 2. Atributos
-- **Personagem**: <ins>ID_Personagem</ins>, experiência, nível, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeStamina, MAX_PontosDeStamina, QTD_Honra, QTD_Defesa, QTD_Ataque;
-- **Raça**: <ins>ID_Raça</ins>, Nome, IND_Velocidade, IND_Furtividade, IND_Magia, IND_Força, IND_Carisma, IND_Percepção;
+- **Personagem**: <ins>ID_Personagem</ins>, experiência, nível, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeStamina, MAX_PontosDeStamina, QTD_Honra, QTD_Defesa, QTD_Ataque, poderes, LocalAtual;
+- **Raça**: <ins>ID_Raça</ins>, Nome, IND_Velocidade, IND_Furtividade, IND_Magia, IND_Força, IND_Carisma, IND_Percepção, personagem;
     - **Humano**
     - **Homi-Magi**
     - **Atlante**
     - **Amazonas** 
     - **Alien**
-- **Classe**: <ins>ID_Classe</ins>;
+- **Classe**: <ins>ID_Classe</ins>, personagem;
     - **Velocista**: IND_Velocidade, IND_Percepção;
     - **Mágico**: IND_Magia, IND_Carisma;
     - **Combatente**: IND_Força, IND_Velocidade;
     - **Detetive**: IND_Furtividade, IND_Carisma, IND_Percepção;
     - **Brutamonte**: IND_Força, IND_Velocidade;
-- **Facção**: <ins>ID_Facção</ins>,Nome, MULT_Honra;
-- **NPC**: <ins>ID_NPC</ins>, Nome;
+- **Facção**: <ins>ID_Facção</ins>,Nome, MULT_Honra, personagem;
+- **NPC**: <ins>ID_NPC</ins>, Nome, personagem;
     - **Mercador**: Tipo;
     - **Inimigo**: Vida, Dano;
     - **Mentor**: MULT_Poder;
     - **Ajudante**: Vida, Dano;
-- **Região**: <ins>ID_Região</ins>, Nome, posição_x, posição_y;
+- **Região**: <ins>ID_Região</ins>, Nome, posição_x, posição_y, LocalMapa;
 - **Mapa**: <ins>ID_Mapa</ins>, Nome;
-- **Inventário**: <ins>ID_Inventário</ins>, Capacidade, QTD_Atual, QTD_Dinheiro;
-- **Instância de Item**: <ins>ID_InstaItem</ins>
+- **Inventário**: <ins>ID_Inventário</ins>, Capacidade, QTD_Atual, QTD_Dinheiro, dono;
+- **Instância de Item**: <ins>ID_InstaItem</ins>, item_ref
 - **Item**: <ins>ID_Item</ins>, Nome, Valor, Descrição, Min_Level;
     - **Equipamento**
         - **Arma**: MULT_Ataque;
@@ -78,7 +78,7 @@ O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve 
         - **Acessório**: MULT_Poder;
     - **Consumível**: MULT_QTD_PontosDeVida, MULT_QTD_PontosDeStamina, MULT_Poder, MULT_Ataque.
 - **Poderes**: <ins>ID_Poderes</ins>, Velocidade, Furtividade, Magia, Força, Carisma, Percepção.
-- **Missão**: <ins>ID_Missão</ins>, Nível_min, REQ_Facção, REQ_Honra;
+- **Missão**: <ins>ID_Missão</ins>, Nível_min, REQ_Facção, REQ_Honra, personagem;
 
 ## 3. Relacionamentos
 
