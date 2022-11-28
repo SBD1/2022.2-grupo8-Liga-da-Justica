@@ -72,7 +72,7 @@ O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve 
 - **Inventário**: <ins>ID_Inventário</ins>, Capacidade, QTD_Atual, QTD_Dinheiro, dono;
 - **Instância de Item**: <ins>ID_InstaItem</ins>, item_ref
 - **Item**: <ins>ID_Item</ins>, Nome, Valor, Descrição, Min_Level;
-    - **Equipamento**
+    - **Equipamento**: tipo;
         - **Arma**: MULT_Ataque;
         - **Armadura**: MULT_Defesa;
         - **Acessório**: MULT_Poder;
@@ -98,12 +98,24 @@ O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve 
 
 - Um personagem pode carregar no mínimo um inventário, e no máximo um inventário (1,1). Um inventário só pode ser carregado por um personagem (1,1).
 
+**Personagem realiza missão**
+
+- Um personagem realiza nenhuma ou várias missões (0,n). Uma missão é realizada no mínimo um e no máximo por um personagem (1,1).
+
+**Personagem negocia instância de item**
+
+- Um personagem negocia uma ou várias instância de item (1,n). Uma instância de item pode ser negociada por somente um personagem.
+
 **Inventário carrega Instância de Item**
 - Um Inventário pode carregar nenhuma ou várias Instâncias de itens(0,n). Uma Instância de Item pode ser carregado por nenhum ou um inventário(0,1). 
 
 **Instancia_Item referencia Item**
 
-- Uma instância de item pode referenciat somente um item (1,1). Um item pode ser referenciado por nenhuma instancia de item ou várias (0,n).
+- Uma instância de item pode referenciar somente um item (1,1). Um item pode ser referenciado por nenhuma instancia de item ou várias (0,n).
+
+**Missão recompensa instância de item**
+
+- Uma missão recompensa nenhuma ou várias instância de item (0,n). Uma insância de item pode ser recompensada em uma ou várias missões (1,n).
 
 **Região contém Personagem**
 
@@ -116,3 +128,23 @@ O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve 
 **Mapa contem Região**
 
 - Um mapa pode conter no mínimo uma região ou várias (1,n). Uma região pode estar contido em somente um mapa (1,1).
+
+**NPC contém Missão**
+
+- Um NPC pode conter no mínimo uma ou mais missões (1,n). Uma missão pode conter no mínimo a um NPC ou vários (0,n).
+
+**Mercador negocia com personagem**
+
+- Um mercador negocia no mínimo com um e no máximo um personagem (1,1). Um personagem negocia no mínimo com um e no máximo um mercador (1,1).
+
+**Ajudante ajuda personagem**
+
+- Um ajudante ajuda no mínimo um e no máximo um personagem (1,1). Um personagem é ajudado mínimo um ou vários ajudantes (1,n).
+
+**Mentor instrui personagem**
+
+- Um mentor instrui no mínimo um e no máximo um personagem (1,1). Um personagem é instruído no mínimo por um e no máximo um mentor (1,1).
+
+**Inimigo ataca personagem**
+
+- Um inimigo ataca no mínimo um e no máximo um personagem (1,1). Um personagem ataca no mínimo um ou vários inimigos (1,n).
