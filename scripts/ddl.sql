@@ -1,4 +1,4 @@
--- For mapa type
+-- For regiao type
 create TYPE nome_regiao AS ENUM (
     'Gotham', 'Metropoles'
 );
