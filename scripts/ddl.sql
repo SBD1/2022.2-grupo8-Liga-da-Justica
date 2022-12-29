@@ -1,9 +1,6 @@
 -- Multiply
 CREATE TYPE multiply_poder AS ENUM ('1', '2', '3', '4', '5');
 
--- For regiao type
-create type  nome_regiao AS ENUM ('Gotham', 'Metropoles');
-
 --Mapa
 create table tb_mapa(
 	id serial constraint pk_id_mapa primary key,

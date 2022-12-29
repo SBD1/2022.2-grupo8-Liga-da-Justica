@@ -1,46 +1,78 @@
 -- Povoando a tabela do mapa
-insert into tb_mapa(nome)
-values
-('Gotham'),
-('Metropoles');
+insert into tb_mapa(nome) values ('Gotham');
+insert into tb_mapa(nome) values ('Metropoles');
+insert into tb_mapa(nome) values ('Atlantis');
+insert into tb_mapa(nome) values ('Central City');
+insert into tb_mapa(nome) values ('Gateway City');
 
 
 -- Povoando a tabela de região
-insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa)
-values
-('Beco do Batman', 0, 1, 1),
-('Beco do Batman', 0, 2, 1),
-('Beco do Batman', 0, 3, 1),
-('Beco do Batman', 0, 4, 1),
-('Beco do Batman', 0, 5, 1),
-('Beco do Batman', 1, 0, 1),
-('Beco do Batman', 1, 1, 1),
-('Beco do Batman', 1, 2, 1),
-('Beco do Batman', 1, 3, 1),
-('Beco do Batman', 1, 4, 1),
-('Beco do Batman', 1, 5, 1),
-('Torre do Lex Luthor', 0, 1, 2),
-('Torre do Lex Luthor', 0, 2, 2),
-('Torre do Lex Luthor', 0, 3, 2),
-('Torre do Lex Luthor', 0, 4, 2),
-('Torre do Lex Luthor', 0, 5, 2),
-('Torre do Lex Luthor', 1, 0, 2),
-('Torre do Lex Luthor', 1, 1, 2),
-('Torre do Lex Luthor', 1, 2, 2),
-('Torre do Lex Luthor', 1, 3, 2),
-('Torre do Lex Luthor', 1, 4, 2),
-('Torre do Lex Luthor', 1, 5, 2);
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '0', '0', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '0', '1', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '0', '2', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '0', '3', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '0', '4', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '1', '0', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '1', '1', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '1', '2', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '1', '3', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '1', '4', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '2', '0', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '2', '1', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '2', '2', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '2', '3', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '2', '4', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '3', '0', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '3', '1', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '3', '2', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '3', '3', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '3', '4', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '4', '0', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '4', '1', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '4', '2', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '4', '3', '1');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Arkham city', '4', '4', '1');
+
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '0', '0', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '0', '1', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '0', '2', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '0', '3', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '0', '4', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '1', '0', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '1', '1', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '1', '2', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '1', '3', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '1', '4', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '2', '0', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '2', '1', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '2', '2', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '2', '3', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '2', '4', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '3', '0', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '3', '1', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '3', '2', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '3', '3', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '3', '4', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '4', '0', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '4', '1', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '4', '2', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '4', '3', '2');
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da liga', '4', '4', '2');
+
+-- Povoando a tabela de poderes
+insert into tb_poderes(velocidade, furtividade, magia, forca, carisma, percepcao) values ('4', '2', '3', '2', '7', '4');
+insert into tb_poderes(velocidade, furtividade, magia, forca, carisma, percepcao) values ('3', '1', '6', '4', '2', '3');
+insert into tb_poderes(velocidade, furtividade, magia, forca, carisma, percepcao) values ('2', '8', '1', '6', '5', '4');
+insert into tb_poderes(velocidade, furtividade, magia, forca, carisma, percepcao) values ('1', '4', '5', '8', '2', '4');
+insert into tb_poderes(velocidade, furtividade, magia, forca, carisma, percepcao) values ('3', '2', '6', '5', '4', '3');
 
 
-insert into tb_poderes(velocidade, furtividade, magia, forca,carisma,percepcao) 
-values(2,3,3,2,4,7);
-
-
-
-
-insert into tb_personagem(nome,experiencia,nivel,QTD_PontosDeVida, MAX_PontoDeVida,sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poderes, Id_Local_Atual)
-values ('Legolas', 30, 3, 100, 100, 1, 50,50,10,1,1,1,4 );
-
+-- Povoando a tabela de personagens
+insert into tb_personagem(experiencia, nivel, nome, qtd_pontosdevida, max_pontodevida, sexo, qtd_pontosdeestamina, max_pontosdeestamina, qtd_honra, qtd_defesa, qtd_ataque, id_poderes, id_local_atual) values ('97', '4', 'Correia', '100', '150', '0', '123', '175', '80', '5', '4', '2', '17');
+insert into tb_personagem(experiencia, nivel, nome, qtd_pontosdevida, max_pontodevida, sexo, qtd_pontosdeestamina, max_pontosdeestamina, qtd_honra, qtd_defesa, qtd_ataque, id_poderes, id_local_atual) values ('84', '3', 'Perillo', '89', '100', '0', '120', '145', '5', '3', '2', '1', '8');
+insert into tb_personagem(experiencia, nivel, nome, qtd_pontosdevida, max_pontodevida, sexo, qtd_pontosdeestamina, max_pontosdeestamina, qtd_honra, qtd_defesa, qtd_ataque, id_poderes, id_local_atual) values ('66', '2', 'Gabgordon', '132', '150', '0', '144', '175', '44', '2', '2', '2', '7');
+insert into tb_personagem(experiencia, nivel, nome, qtd_pontosdevida, max_pontodevida, sexo, qtd_pontosdeestamina, max_pontosdeestamina, qtd_honra, qtd_defesa, qtd_ataque, id_poderes, id_local_atual) values ('77', '7', 'Suares', '77', '177', '0', '77', '177', '77', '7', '7', '5', '23');
+insert into tb_personagem(experiencia, nivel, nome, qtd_pontosdevida, max_pontodevida, sexo, qtd_pontosdeestamina, max_pontosdeestamina, qtd_honra, qtd_defesa, qtd_ataque, id_poderes, id_local_atual) values ('69', '6', 'Iaguin', '100', '150', '0', '123', '175', '80', '5', '4', '3', '12');
 
 -- Povoando a tabela das classes
 insert into velocista(id_classe,personagem,ind_percepcao,ind_velocidade) values(1,1,45,70);
