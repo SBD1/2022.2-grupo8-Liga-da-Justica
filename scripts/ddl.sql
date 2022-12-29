@@ -212,7 +212,7 @@ create table tb_missao (
 	REQ_Faccao boolean,
 	id_personagem int,
 	constraint fk_personagem foreign key (id_personagem) references tb_personagem (id)
-)
+);
 
 -- npc
 create table tb_npc(
