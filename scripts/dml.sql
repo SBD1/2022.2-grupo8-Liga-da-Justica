@@ -74,22 +74,26 @@ insert into tb_personagem(experiencia, nivel, nome, qtd_pontosdevida, max_pontod
 insert into tb_personagem(experiencia, nivel, nome, qtd_pontosdevida, max_pontodevida, sexo, qtd_pontosdeestamina, max_pontosdeestamina, qtd_honra, qtd_defesa, qtd_ataque, id_poderes, id_local_atual) values ('77', '7', 'Suares', '77', '177', '0', '77', '177', '77', '7', '7', '5', '23');
 insert into tb_personagem(experiencia, nivel, nome, qtd_pontosdevida, max_pontodevida, sexo, qtd_pontosdeestamina, max_pontosdeestamina, qtd_honra, qtd_defesa, qtd_ataque, id_poderes, id_local_atual) values ('69', '6', 'Iaguin', '100', '150', '0', '123', '175', '80', '5', '4', '3', '12');
 
+-- Povoando as Raças
+insert into tb_humano(nome, id_personagem, ind_carisma, ind_percepcao, ind_furtividade) values ('Indigena', '1', '7', '3', '2');
+insert into tb_homi_magi(nome, id_personagem, ind_magia, ind_percepcao, ind_velocidade) values ('Mago', '2', '4', '2', '6');
+insert into tb_amazonas(nome, id_personagem, ind_forca, ind_carisma, ind_velocidade) values ('Amazonas', '3', '3', '4', '4');
+insert into tb_atlante (nome, id_personagem, ind_furtividade, ind_forca, ind_velocidade) values ('Atlante', '4', '2', '1', '2');
+insert into tb_alien(nome, id_personagem, ind_forca, ind_percepcao, ind_velocidade) values ('Kripton', '5', '6', '6', '6');
+
+-- Povoando Facções
+insert into tb_heroi(nome, id_personagem, mult_honra) values ('Soldados do amanhã', '1', '2');
+insert into tb_heroi(nome, id_personagem, mult_honra) values ('Cavaleiros da noite', '2', '2');
+insert into tb_heroi(nome, id_personagem, mult_honra) values ('Guerreiros de Diana', '3', '2');
+insert into tb_vilao(nome, id_personagem, mult_honra) values ('Trupe do coringa', '4', '-2');
+insert into tb_vilao(nome, id_personagem, mult_honra) values ('Capangas de Lex Luthor', '5', '-2');
+
 -- Povoando a tabela das classes
-insert into velocista(id_classe,personagem,ind_percepcao,ind_velocidade) values(1,1,45,70);
-insert into velocista(id_classe,personagem,ind_percepcao,ind_velocidade) values(1,2,45,70);
-
-insert into brutamonte(id_classe,personagem,ind_forca,ind_velocidade) values(2,3,70,20);
-insert into brutamonte(id_classe,personagem,ind_forca,ind_velocidade) values(2,4,70,20);
-insert into brutamonte(id_classe,personagem,ind_forca,ind_velocidade) values(2,5,70,20);
-
-insert into detetive(id_classe,personagem,IND_Furtividade,IND_Carisma,ind_percepcao) values(3,6,70,40,40);
-insert into detetive(id_classe,personagem,IND_Furtividade,IND_Carisma,ind_percepcao) values(3,7,70,40,40);
-insert into detetive(id_classe,personagem,IND_Furtividade,IND_Carisma,ind_percepcao) values(3,8,70,40,40);
-
-insert into magico(id_classe,personagem,IND_Magia, IND_Carisma) values(4,9,70,40);
-insert into magico(id_classe,personagem,IND_Magia, IND_Carisma) values(4,10,70,40);
-
-insert into combatente(id_classe,personagem, ind_forca,ind_velocidade) values (5,11,60,40);
+insert into tb_velocista(id_personagem, ind_velocidade, ind_percepcao) values ('1', '7', '4');
+insert into tb_magico(id_personagem, ind_magia, ind_carisma) values ('2', '6', '3');
+insert into tb_combatente(id_personagem, ind_forca, ind_velocidade) values ('3', '5', '5');
+insert into tb_detetive(id_personagem, ind_furtividade, ind_carisma, ind_percepcao) values ('4', '3', '3', '3');
+insert into tb_brutamonte(id_personagem, ind_forca, ind_velocidade) values ('5', '7', '4');
 
 -- Povoando Itens
 
