@@ -29,6 +29,30 @@ create table tb_Acessorio(
 MULT_Poder int
 ) inherits(tb_equipamento);
 
+create table tb_instancia_item (
+id serial not null,
+id_item int not null,
+constraint pk_instancia_item primary key (id)
+);
+
+create table tb_inventario(
+id serial not null, 
+capacidade int DEFAULT 100 NOT NULL,
+qtd_atual int, 
+qtd_dinheiro int,
+id_item int,
+id_personagem int not null,
+constraint pk_iventario primary key(id),
+constraint fk_id_intem foreign key(id_item) references tb_instancia_item (id)
+constraint fk_personagem foreign key (id_personagem) references tb_personagem (id)
+);
+
+insert into tb_instancia_item (id_item)
+select id from tb_item
+
+insert into tb_inventario (capacidade, qtd_atual,qtd_dinheiro,id_item, id_personagem)
+values (99,1,50,5,1), (98,2,50,9,1), (97,3,51,17,1), (99,1,32,4,2), (98,2,36,18,2)
+
 insert into tb_arma (nome, descricao, valor,min_level,tipo, mult_ataque)
 Values('Espada','Arma branca constituída por uma longa lâmina de aço', 40, 3, 'Arma', 4);
 
