@@ -1,7 +1,7 @@
 --Mapa
 create table tb_mapa(
 	id serial constraint pk_id_mapa primary key,
-   	nome varchar(33) not null
+   	nome varchar(50) not null
 );
 
 -- For regiao type
