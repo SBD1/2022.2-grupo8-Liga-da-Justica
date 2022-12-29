@@ -13,7 +13,7 @@ create table tb_mapa(
 -- Região
 create table tb_regiao(
 	id serial constraint pk_id_regiao primary key,
-   	nome nome_regiao not null,
+   	nome varchar(30) not null,
    	posicao_x int not null,
    	posicao_y int not null,
    	id_localMapa int not null,
@@ -26,9 +26,9 @@ create table tb_poderes(
 	Velocidade int,
 	Furtividade int,
 	Magia int,
-	Força int,
+	Forca int,
 	Carisma int,
-	Percepção int
+	Percepcao int
 );
 
 -- Personagem

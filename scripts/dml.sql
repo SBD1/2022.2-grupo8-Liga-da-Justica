@@ -1,22 +1,46 @@
 -- Povoando a tabela do mapa
 insert into tb_mapa(nome)
 values
-('Beco do Batman'),
-('Prédio Lex Luthor'),
-('Avenida Mulher Maravilha'),
-('Super-man Land'),
-('Estádio Flash'),
-('Rua Detetive Gordon');
+('Gotham'),
+('Metropoles');
+
 
 -- Povoando a tabela de região
-insert into tb_regiao(nome, posicao_x, posicao_y, localmapa)
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa)
 values
-('Gotham', 1, 1, 1),
-('Metropoles', 2, 1, 2),
-('Metropoles', 2, 4, 3),
-('Metropoles', 2, 7, 4),
-('Metropoles', 2, 8, 5),
-('Gotham', 1, 4, 6);
+('Beco do Batman', 0, 1, 1),
+('Beco do Batman', 0, 2, 1),
+('Beco do Batman', 0, 3, 1),
+('Beco do Batman', 0, 4, 1),
+('Beco do Batman', 0, 5, 1),
+('Beco do Batman', 1, 0, 1),
+('Beco do Batman', 1, 1, 1),
+('Beco do Batman', 1, 2, 1),
+('Beco do Batman', 1, 3, 1),
+('Beco do Batman', 1, 4, 1),
+('Beco do Batman', 1, 5, 1),
+('Torre do Lex Luthor', 0, 1, 2),
+('Torre do Lex Luthor', 0, 2, 2),
+('Torre do Lex Luthor', 0, 3, 2),
+('Torre do Lex Luthor', 0, 4, 2),
+('Torre do Lex Luthor', 0, 5, 2),
+('Torre do Lex Luthor', 1, 0, 2),
+('Torre do Lex Luthor', 1, 1, 2),
+('Torre do Lex Luthor', 1, 2, 2),
+('Torre do Lex Luthor', 1, 3, 2),
+('Torre do Lex Luthor', 1, 4, 2),
+('Torre do Lex Luthor', 1, 5, 2);
+
+
+insert into tb_poderes(velocidade, furtividade, magia, forca,carisma,percepcao) 
+values(2,3,3,2,4,7);
+
+
+
+
+insert into tb_personagem(nome,experiencia,nivel,QTD_PontosDeVida, MAX_PontoDeVida,sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poderes, Id_Local_Atual)
+values ('Legolas', 30, 3, 100, 100, 1, 50,50,10,1,1,1,4 );
+
 
 -- Povoando a tabela das classes
 insert into velocista(id_classe,personagem,ind_percepcao,ind_velocidade) values(1,1,45,70);
@@ -41,7 +65,7 @@ insert into tb_instancia_item (id_item)
 select id from tb_item
 
 insert into tb_inventario (capacidade, qtd_atual,qtd_dinheiro,id_item, id_personagem)
-values (99,1,50,5,1), (98,2,50,9,1), (97,3,51,17,1), (99,1,32,4,2), (98,2,36,18,2)
+values (99,1,50,5,1), (98,2,50,9,1), (97,3,51,17,1), (99,1,32,4,2), (98,2,36,18,2);
 
 insert into tb_arma (nome, descricao, valor,min_level,tipo, mult_ataque)
 Values('Espada','Arma branca constituída por uma longa lâmina de aço', 40, 3, 'Arma', 4);
