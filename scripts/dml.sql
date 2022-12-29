@@ -8,6 +8,7 @@ values
 ('Estádio Flash'),
 ('Rua Detetive Gordon');
 
+-Povoando a tabela de região
 insert into tb_regiao(nome, posicao_x, posicao_y, localmapa)
 values
 ('Gotham', 1, 1, 1),
