@@ -1,22 +1,23 @@
+-- Multiply
+CREATE TYPE multiply_poder AS ENUM ('1', '2', '3', '4', '5');
+
+-- For regiao type
+create type  nome_regiao AS ENUM ('Gotham', 'Metropoles');
+
 --Mapa
 create table tb_mapa(
 	id serial constraint pk_id_mapa primary key,
    	nome varchar(50) not null
 );
 
--- For regiao type
-create type  nome_regiao AS ENUM (
-    'Gotham', 'Metropoles'
-);
-
 -- Região
 create table tb_regiao(
 	id serial constraint pk_id_regiao primary key,
-   	nome nome_regiao not null ,
+   	nome nome_regiao not null,
    	posicao_x int not null,
    	posicao_y int not null,
-   	localMapa int not null,
-   	constraint  fk_LocalMapa foreign key(localMapa)  references tb_mapa (id)
+   	id_localMapa int not null,
+   	constraint  fk_LocalMapa foreign key(id_localMapa)  references tb_mapa (id)
 );
 
 --poder
@@ -44,108 +45,111 @@ create table tb_personagem(
 	QTD_Honra int not null,
 	QTD_Defesa int not null,
 	QTD_Ataque int not null,
-	poderes int not null,
-	constraint fk_poderes foreign key(poderes) references tb_poderes (id),
-	Local_Atual int not null,
-	constraint fk_Local_Atual foreign key(Local_Atual) references tb_regiao (id)
+	id_poderes int not null,
+	constraint fk_poderes foreign key(id_poderes) references tb_poderes (id),
+	id_Local_Atual int not null,
+	constraint fk_Local_Atual foreign key(id_Local_Atual) references tb_regiao (id)
 );
 
 -- Raça
 create table tb_raca(
    id serial constraint pk_id_raca primary key,
    nome varchar(10) not null,
-   IND_velocidade int not null,
-   IND_furtividade int not null,
-   IND_magia int not null,
-   IND_forca int not null,
-   IND_carisma int not null,
-   IND_percepcao int not null,
    id_personagem int not null,
    constraint fk_personagem foreign key(id_personagem) references tb_personagem (id)
 );
 
 -- Humano
 create table tb_humano(
-
+	IND_carisma int not null,
+	IND_percepcao int not null,
+	IND_furtividade int not null
 ) inherits(tb_raca);
 
 -- Homi-Magi
 create table tb_homi_magi(
-
+	IND_magia int not null,
+	IND_percepcao int not null,
+	IND_velocidade int not null
 ) inherits(tb_raca);
 
 -- Atlante
 create table tb_atlante(
-
+	IND_forca int not null,
+	IND_furtividade int not null,
+	IND_velocidade int not null
 ) inherits(tb_raca);
 
 -- Amazonas
 create table tb_amazonas(
-
+	IND_forca int not null,
+	IND_carisma int not null,
+	IND_velocidade int not null
 ) inherits(tb_raca);
 
 -- Alien 
 create table tb_alien(
-
+	IND_forca int not null,
+	IND_percepcao int not null,
+	IND_velocidade int not null
 ) inherits(tb_raca);
 
-CREATE TABLE faccao (
+CREATE TABLE tb_faccao (
     ID_faccao serial not null,
     Nome varchar(30) not null,
-    MULT_honra int not null,
-    personagem int not null,
-
+    id_personagem int not null,
     CONSTRAINT pk_faccao primary key (ID_faccao),
     CONSTRAINT sk_faccao unique (Nome),
-    CONSTRAINT fk_personagem FOREIGN KEY (personagem) REFERENCES tb_personagem (id_personagem)
+    CONSTRAINT fk_personagem FOREIGN KEY (id_personagem) REFERENCES tb_personagem (id)
 );
 
 -- Heroi 
-CREATE TABLE heroi(
-
-) inherits(faccao);
+CREATE TABLE tb_heroi(
+	MULT_honra int not null
+) inherits(tb_faccao);
 
 -- Vilao
-CREATE TABLE vilao(
-
-) inherits(faccao);
+CREATE TABLE tb_vilao(
+	MULT_honra int not null
+) inherits(tb_faccao);
 
 -- Classe
-CREATE TABLE classe (
+CREATE TABLE tb_classe (
     ID_Classe serial primary key,
-    CONSTRAINT fk_personagem FOREIGN KEY (personagem) REFERENCES tb_personagem (id_personagem)
+    id_personagem int not null,
+    CONSTRAINT fk_personagem FOREIGN KEY (id_personagem) REFERENCES tb_personagem (id)
 );
 
 -- Velocista
-CREATE TABLE velocista(
+CREATE TABLE tb_velocista(
     IND_Percepcao int not null,
     IND_Velocidade int not null
-) inherits(classe);
+) inherits(tb_classe);
 
 -- Magico
-CREATE TABLE Magico(
+CREATE TABLE tb_magico(
     IND_Magia int not null,
     IND_Carisma int not null
-) inherits(classe);
+) inherits(tb_classe);
 
 -- Combatente
-CREATE TABLE Combatente(
+CREATE TABLE tb_combatente(
     IND_Forca int not null,
     IND_Velocidade int not null
-)inherits(classe);
+)inherits(tb_classe);
 
 -- Detetive
-CREATE TABLE Detetive(
+CREATE TABLE tb_detetive(
     IND_Furtividade int not null,
     IND_Carisma int not null,
     IND_percepcao int not null
-)inherits(classe);
+)inherits(tb_classe);
 
 -- Brutamonte
-CREATE TABLE Brutamonte(
+CREATE TABLE tb_brutamonte(
     IND_Forca int not null,
-    IND_Velocidade int not null,
-)inherits(classe);
+    IND_Velocidade int not null
+)inherits(tb_classe);
 
 -- Item
 create table tb_item(
@@ -200,7 +204,7 @@ qtd_dinheiro int,
 id_item int,
 id_personagem int not null,
 constraint pk_iventario primary key(id),
-constraint fk_id_intem foreign key(id_item) references tb_instancia_item (id)
+constraint fk_id_intem foreign key(id_item) references tb_instancia_item (id),
 constraint fk_personagem foreign key (id_personagem) references tb_personagem (id)
 );
 
@@ -214,8 +218,6 @@ create table tb_missao (
 )
 
 -- npc
-CREATE TYPE multiply_poder AS ENUM ('1', '2', '3', '4', '5');
-
 create table tb_npc(
 	id serial constraint pk_id_npc primary key,
 	nome varchar(30) not null,
