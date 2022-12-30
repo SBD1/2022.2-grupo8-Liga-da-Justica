@@ -25,3 +25,18 @@ Repositório para aplicar os conceitos aprendidos na disciplina de Sistema de Ba
 ## Apresentações
 
 <a href="https://www.youtube.com/watch?v=4aodH7TfQRc">Apresentação 1</a> <br>
+
+## Executando o Projeto
+```bash
+# Clone o repositório
+$ git clone https://github.com/SBD1/2022.2-grupo7-Liga-da-Justica.git
+
+# Instale as dependências do Node (necessário ter ele instalado)
+$ npm install
+
+# Rodando o docker
+$ docker-compose up
+
+# Execute o projeto em outro terminal
+$ node src/api.js
+```
