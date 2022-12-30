@@ -1,0 +1,26 @@
+{ 
+  "name": "2022.2-grupo7-liga-da-justica",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">  <img src=\"docs/imgs/ligadajustica.jpg\" width=\"350px\"></img> </div>",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SBD1/2022.2-grupo7-Liga-da-Justica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SBD1/2022.2-grupo7-Liga-da-Justica/issues"
+  },
+  "homepage": "https://github.com/SBD1/2022.2-grupo7-Liga-da-Justica#readme",
+  "dependencies": {
+    "pg": "^8.8.0",
+    "readline-sync": "^1.4.10"
+  }
+}
