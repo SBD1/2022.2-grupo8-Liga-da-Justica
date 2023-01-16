@@ -191,7 +191,7 @@ insert into tb_faccao_heroi(id_faccao , nome, MULT_honra ) values (1, 'Guerreiro
 insert into tb_faccao_vilao(id_faccao , nome, MULT_honra ) values (2, 'Trupe do coringa', '-2');
 insert into tb_faccao_vilao(id_faccao , nome, MULT_honra ) values (2, 'Capangas de Lex Luthor', '-2');
  
- -classe 
+ --classe 
 insert into tb_classe(nome) values ('Velocista');
 insert into tb_classe(nome) values ('Magico');
 insert into tb_classe(nome) values ('Combatente');
@@ -200,7 +200,7 @@ insert into tb_classe(nome) values ('Brutamonte');
 
 --type classe
 insert into tb_classe_velocista(IND_Percepcao, IND_Velocidade, id_classe, nome) values (4, 7, 1, 'Velocista');
-insert into tb_classe_magico(IND_Magia,,IND_Carisma, id_classe, nome) values (6, 3, 2, 'Magico');
+insert into tb_classe_magico(IND_Magia, IND_Carisma, id_classe, nome) values (6, 3, 2, 'Magico');
 insert into tb_classe_combatente(IND_Forca, IND_Velocidade, id_classe, nome) values (5, 5, 3, 'Combatente');
 insert into tb_classe_detetive(IND_Furtividade, IND_Carisma, IND_percepcao, id_classe, nome) values (3, 3, 3, 4, 'Detetive');
 insert into tb_classe_brutamonte(IND_Forca, IND_Velocidade, id_classe, nome) values (7, 4, 5, 'Brutamonte');
