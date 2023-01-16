@@ -206,9 +206,9 @@ insert into tb_classe_detetive(IND_Furtividade, IND_Carisma, IND_percepcao, id_c
 insert into tb_classe_brutamonte(IND_Forca, IND_Velocidade, id_classe, nome) values (7, 4, 5, 'Brutamonte');
 
 --personagem
-insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (97, 4, 'Correia', 100, 150, 0, 123, 175, 80, 5, 4, 2, 17, 5, 1, 1, 1, 1);
-insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (84, 3, 'Perillo', 89, 100, 0, 120, 145, 5, 3, 2, 1, 8, 5, 1, 2, 1, 2);
-insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (66, 2, 'Gabgordon', 89, 100, 0, 120, 145,  5, 3, 2, 1, 7, 4, 2, 3, 2, 3);
+insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (97, 4, 'Correia', 100, 150, 0, 123, 175, 80, 5, 4, 2, 17, 1, 1, 1, 1, 1);
+insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (84, 3, 'Perillo', 89, 100, 0, 120, 145, 5, 3, 2, 1, 8, 1, 1, 2, 1, 2);
+insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (66, 2, 'Gabgordon', 89, 100, 0, 120, 145,  5, 3, 2, 1, 7, 2, 2, 3, 2, 3);
 
 --inventario
 insert into tb_inventario (capacidade, qtd_atual,qtd_dinheiro, id_personagem)
