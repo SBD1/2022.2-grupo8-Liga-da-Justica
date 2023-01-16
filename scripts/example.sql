@@ -213,3 +213,17 @@ insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoD
 --inventario
 insert into tb_inventario (capacidade, qtd_atual,qtd_dinheiro, id_personagem)
 values (99,1,50,1), (98,2,50,1), (97,3,51,1), (99,1,32,2), (98,2,36,2);
+
+--Instancia de Item
+insert into tb_instancia_item(id_item, id_inventario) values (1,1);
+insert into tb_instancia_item(id_item, id_inventario) values (6,1);
+insert into tb_instancia_item(id_item, id_inventario) values (15,1);
+insert into tb_instancia_item(id_item, id_inventario) values (18,1);
+insert into tb_instancia_item(id_item, id_inventario) values (20,1);
+insert into tb_instancia_item(id_item, id_inventario) values (2,2);
+insert into tb_instancia_item(id_item, id_inventario) values (5,2);
+insert into tb_instancia_item(id_item, id_inventario) values (9,2);
+insert into tb_instancia_item(id_item, id_inventario) values (17,2);
+insert into tb_instancia_item(id_item, id_inventario) values (19,2);
+insert into tb_instancia_item(id_item, id_inventario) values (20,2);
+
