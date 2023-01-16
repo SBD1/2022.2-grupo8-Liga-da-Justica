@@ -183,13 +183,13 @@ insert into tb_faccao(nome) values ('heroi');
 insert into tb_faccao(nome) values ('Vilao');
 
 --faccao heroi
-insert into tb_faccao_heroi(nome, MULT_honra ) values (1, 'Soldados do amanhã', '2');
-insert into tb_faccao_heroi(nome, MULT_honra ) values (1, 'Cavaleiros da noite', '2');
-insert into tb_faccao_heroi(nome, MULT_honra ) values (1, 'Guerreiros de Diana', '2');
+insert into tb_faccao_heroi(id_faccao , nome, MULT_honra ) values (1, 'Soldados do amanhã', '2');
+insert into tb_faccao_heroi(id_faccao , nome, MULT_honra ) values (1, 'Cavaleiros da noite', '2');
+insert into tb_faccao_heroi(id_faccao , nome, MULT_honra ) values (1, 'Guerreiros de Diana', '2');
 
 --faccao vilao
-insert into tb_faccao_vilao(nome, MULT_honra ) values (2, 'Trupe do coringa', '-2');
-insert into tb_faccao_vilao(nome, MULT_honra ) values (2, 'Capangas de Lex Luthor', '-2');
+insert into tb_faccao_vilao(id_faccao , nome, MULT_honra ) values (2, 'Trupe do coringa', '-2');
+insert into tb_faccao_vilao(id_faccao , nome, MULT_honra ) values (2, 'Capangas de Lex Luthor', '-2');
  
  -classe 
 insert into tb_classe(nome) values ('Velocista');
