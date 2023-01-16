@@ -216,7 +216,7 @@ insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoD
 
 --inventario
 insert into tb_inventario (capacidade, qtd_atual,qtd_dinheiro, id_personagem)
-values (99,1,50,1), (98,2,50,1), (97,3,51,1), (99,1,32,2), (98,2,36,2);
+values (99,1,50,1), (98,2,50,2), (97,3,51,3);
 
 --Instancia de Item
 insert into tb_instancia_item(id_item, id_inventario) values (1,1);
