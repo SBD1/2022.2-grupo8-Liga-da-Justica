@@ -144,7 +144,11 @@ insert into tb_npc(nome, id_regiao) values ('Robin', 29);
 insert into tb_npc(nome, id_regiao) values ('Arqueiro Verde', 30);
 insert into tb_npc(nome, id_regiao) values ('Arlequina', 1); 
 insert into tb_npc(nome, id_regiao) values ('Coringa', 2);
-insert into tb_npc(nome, id_regiao) values ('Lex Luthor', 3);   
+insert into tb_npc(nome, id_regiao) values ('Lex Luthor', 3);  
+insert into tb_npc(nome, id_regiao) values ('Vendedor Misterioso', 3); 
+insert into tb_npc(nome, id_regiao) values ('Tralhas velhas', 13); 
+insert into tb_npc(nome, id_regiao) values ('Vendedor Oficial', 26);
+insert into tb_npc(nome, id_regiao) values ('O mercador', 39); 
 
 --npc ajudante
 insert into tb_npc_ajudante(id_npc, nome, vida, dano) values (4, 'Robin',  50, 5);
@@ -234,4 +238,7 @@ insert into tb_missao(nivel_min, REQ_Faccao, REQ_Honra, id_personagem, id_instan
 insert into tb_missao(nivel_min, REQ_Faccao, REQ_Honra, id_personagem, id_instancia_item) values (10, true, true, 2, 3);
 
 --NPC mercador
-
+insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(9, 'Vendedor Misterioso', 'Contrabando', 1);
+insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(10, 'Tralhas velhas', 'Itens roubados', 3);
+insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(11, 'Vendedor Oficial' , 'Itens legalizados', 11);
+insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(12, 'O mercador', 'Itens de herois', 8);
