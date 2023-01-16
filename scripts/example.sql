@@ -60,27 +60,27 @@ insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('QG da l
 
 
 -- Item
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Espada','Arma branca constituída por uma longa lâmina de aço', 40, 3, 'Arma');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Pistola','Arma de fogo portátil', 60, 2, 'Arma');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Bastão Longo','Arma branca muito utilizada por lutadores de artes marciais', 20, 1, 'Arma');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Tridente','Arma branca de três pontas originada de atlântida', 0, 6, 'Arma');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Arco e flecha','Arma de longo alcance', 15, 1, 'Arma');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Soco inglês','Arma branca utilizada para aumentar o poder do seu soco', 10, 1, 'Arma');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Capacete de combate','proteção na cabeça utilizada por soldados', 15, 2, 'Armadura');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Colete Balístico','proteção no tronco para evitar tiros', 15, 1, 'Armadura');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Armadura completa balística','Roupa completa feita de um tecido aprova de balas', 70, 4, 'Armadura');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Amvabraço de Titânio ','Proteção da parte inferior do antebraço', 40, 1, 'Armadura');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Joelheira comum','Proteção dos joelhos, muito utilizada para evitar quedas', 5, 1, 'Armadura');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Capa usada do Batman','Capa utilizada pelo cavaleiro das trevas no seu antigo uniforme', 50, 1, 'Acessorio');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Capa usada do Superman','Capa utilizada pelo Superman no seu antigo uniforme', 80, 1, 'Acessorio');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Braceletes usados da Mulher-maravilha','Bracelete utilizado pela heroína no seu antigo uniforme', 60, 1, 'Acessorio');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Máscara capanga coringa','Adereço utilizado pela gangue do coringa para assutar os cidadãos', 10, 1, 'Acessorio');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Cartola mágica','Chapéu encantado por Magias desconhecidas', 100, 3, 'Acessorio');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Poção de vida','Mistura de ingredientes que aumentam a vida de quem tomar', 10, 1, 'consumivel');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Tônico','aumenta sua stamina', 10, 1, 'consumivel');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Injeção de andrenalina','aumenta sua stamina', 30, 2, 'consumivel'); 
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Poção mágica','Mistura de ingredientes que aumentam o poder mágico de quem tomar', 50, 1, 'consumivel');
-insert into tb_item(nome, descricao, valor, min_level, tipo) values ('Band-aid','curativo para ferimentos', 3, 1, 'consumivel');
+insert into tb_item(nome, descricao, valor, min_level) values ('Espada','Arma branca constituída por uma longa lâmina de aço', 40, 3);
+insert into tb_item(nome, descricao, valor, min_level) values ('Pistola','Arma de fogo portátil', 60, 2);
+insert into tb_item(nome, descricao, valor, min_level) values ('Bastão Longo','Arma branca muito utilizada por lutadores de artes marciais', 20, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Tridente','Arma branca de três pontas originada de atlântida', 0, 6);
+insert into tb_item(nome, descricao, valor, min_level) values ('Arco e flecha','Arma de longo alcance', 15, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Soco inglês','Arma branca utilizada para aumentar o poder do seu soco', 10, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Capacete de combate','proteção na cabeça utilizada por soldados', 15, 2);
+insert into tb_item(nome, descricao, valor, min_level) values ('Colete Balístico','proteção no tronco para evitar tiros', 15, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Armadura completa balística','Roupa completa feita de um tecido aprova de balas', 70, 4);
+insert into tb_item(nome, descricao, valor, min_level) values ('Amvabraço de Titânio ','Proteção da parte inferior do antebraço', 40, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Joelheira comum','Proteção dos joelhos, muito utilizada para evitar quedas', 5, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Capa usada do Batman','Capa utilizada pelo cavaleiro das trevas no seu antigo uniforme', 50, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Capa usada do Superman','Capa utilizada pelo Superman no seu antigo uniforme', 80, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Braceletes usados da Mulher-maravilha','Bracelete utilizado pela heroína no seu antigo uniforme', 60, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Máscara capanga coringa','Adereço utilizado pela gangue do coringa para assutar os cidadãos', 10, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Cartola mágica','Chapéu encantado por Magias desconhecidas', 100, 3);
+insert into tb_item(nome, descricao, valor, min_level) values ('Poção de vida','Mistura de ingredientes que aumentam a vida de quem tomar', 10, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Tônico','aumenta sua stamina', 10, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Injeção de andrenalina','aumenta sua stamina', 30, 2); 
+insert into tb_item(nome, descricao, valor, min_level) values ('Poção mágica','Mistura de ingredientes que aumentam o poder mágico de quem tomar', 50, 1);
+insert into tb_item(nome, descricao, valor, min_level) values ('Band-aid','curativo para ferimentos', 3, 1);
 
 -- Equipamento
 insert into tb_item_equipamento(id_item, nome, descricao, valor, min_level, tipo) values (1, 'Espada','Arma branca constituída por uma longa lâmina de aço', 40, 3, 'Arma');
