@@ -227,3 +227,11 @@ insert into tb_instancia_item(id_item, id_inventario) values (17,2);
 insert into tb_instancia_item(id_item, id_inventario) values (19,2);
 insert into tb_instancia_item(id_item, id_inventario) values (20,2);
 
+--Missao
+insert into tb_missao(nivel_min, REQ_Faccao, REQ_Honra, id_personagem, id_instancia_item) values (1, false, false, 1, 1);
+insert into tb_missao(nivel_min, REQ_Faccao, REQ_Honra, id_personagem, id_instancia_item) values (5, true, false, 2, 1);
+insert into tb_missao(nivel_min, REQ_Faccao, REQ_Honra, id_personagem, id_instancia_item) values (5, false, true, 3, 6);
+insert into tb_missao(nivel_min, REQ_Faccao, REQ_Honra, id_personagem, id_instancia_item) values (10, true, true, 2, 3);
+
+--NPC mercador
+
