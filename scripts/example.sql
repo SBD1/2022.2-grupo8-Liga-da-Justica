@@ -151,9 +151,9 @@ insert into tb_npc_ajudante(id_npc, nome, vida, dano) values (4, 'Robin',  50, 5
 insert into tb_npc_ajudante(id_npc, nome, vida, dano) values (5, 'Arqueiro Verde',  50, 5);
 
 --npc mentor 
-insert into tb_npc_mentor(id_npc, nome, MULT_poder) values (1, 'Flash', 2);
-insert into tb_npc_mentor(id_npc, nome, MULT_poder) values (2, 'Batman', 2);
-insert into tb_npc_mentor(id_npc, nome, MULT_poder) values (3, 'Aquaman', 2);
+insert into tb_npc_mentor(id_npc, nome, MULT_poder) values (1, 'Flash', '2');
+insert into tb_npc_mentor(id_npc, nome, MULT_poder) values (2, 'Batman', '2');
+insert into tb_npc_mentor(id_npc, nome, MULT_poder) values (3, 'Aquaman', '2');
 
 --npc inimigo
 insert into tb_npc_inimigo(id_npc, nome, vida, dano) values (6, 'Arlequina', 100, 10);
