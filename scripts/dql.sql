@@ -42,3 +42,16 @@ select tb_personagem.nome, tb_personagem.qtd_defesa
 -- Ver quantidade de ataque do personagem
 select tb_personagem.nome, tb_personagem.qtd_ataque 
 	from tb_personagem
+
+-- Encontrar nome do usuário(Login)
+select * from tb_personagem where nome = 'Legolas'
+
+--Encontrar posição específica no mapa
+select r.posicao_x , r.posicao_y, r.nome from tb_regiao r where id= '${id}'
+
+--Atualizar posição do personagem 
+update tb_personagem set id_local_atual = 5 where id= 2
+
+-- Encontar ID de uma posição tendo outros os outros dados
+select * from tb_regiao where posicao_x = 1 and posicao_y =4  and nome = 'Arkham city'
+
