@@ -26,3 +26,7 @@ select tb_personagem.nome, tb_raca.nome
 select tb_personagem.nome, tb_poderes.velocidade, tb_poderes.furtividade, tb_poderes.magia, tb_poderes.forca, tb_poderes.carisma, tb_poderes.percepcao 
 	from tb_personagem inner join tb_poderes
 		on tb_personagem.id = tb_poderes.id 
+
+-- Ver experiencia do personagem
+select tb_personagem.nome, tb_personagem.experiencia
+	from tb_personagem 
