@@ -100,7 +100,7 @@ O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve 
 
 **Personagem realiza missão**
 
-- Um personagem realiza nenhuma ou várias missões (0,n). Uma missão é realizada no mínimo um e no máximo por um personagem (1,1).
+- Um personagem realiza uma ou várias missões (1,n). Uma missão é realizada no mínimo um ou por vários personagens (1,n).
 
 **Personagem negocia instância de item**
 
@@ -108,6 +108,9 @@ O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve 
 
 **Inventário carrega Instância de Item**
 - Um Inventário pode carregar nenhuma ou várias Instâncias de itens(0,n). Uma Instância de Item pode ser carregado por nenhum ou um inventário(0,1). 
+
+**Mercador carrega Instância de Item**
+- Um mercador carrega uma ou várias instâncias de item(1,n). Uma Instância de item é carregada somente por um mercador (1,1).
 
 **Instancia_Item referencia Item**
 
@@ -132,10 +135,6 @@ O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve 
 **NPC contém Missão**
 
 - Um NPC pode conter no mínimo uma ou mais missões (1,n). Uma missão pode conter no mínimo a um NPC ou vários (0,n).
-
-**Mercador negocia com personagem**
-
-- Um mercador negocia no mínimo com um e no máximo um personagem (1,1). Um personagem negocia no mínimo com um e no máximo um mercador (1,1).
 
 **Ajudante ajuda personagem**
 
