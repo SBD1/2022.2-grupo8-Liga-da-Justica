@@ -16,3 +16,8 @@ select tb_personagem.nome, tb_classe.nome
 select tb_personagem.nome, tb_regiao.nome, tb_regiao.posicao_x, tb_regiao.posicao_y 
 	from tb_personagem inner join tb_regiao
 		on tb_personagem.id_local_atual = tb_regiao.id 
+
+--Ver raça do personagem
+select tb_personagem.nome, tb_raca.nome
+	from tb_personagem inner join tb_raca
+		on tb_personagem.id_raca = tb_raca.id 
