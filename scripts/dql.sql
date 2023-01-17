@@ -17,7 +17,12 @@ select tb_personagem.nome, tb_regiao.nome, tb_regiao.posicao_x, tb_regiao.posica
 	from tb_personagem inner join tb_regiao
 		on tb_personagem.id_local_atual = tb_regiao.id 
 
---Ver raça do personagem
+-- Ver raça do personagem
 select tb_personagem.nome, tb_raca.nome
 	from tb_personagem inner join tb_raca
 		on tb_personagem.id_raca = tb_raca.id 
+
+-- Ver poderes do personagem 
+select tb_personagem.nome, tb_poderes.velocidade, tb_poderes.furtividade, tb_poderes.magia, tb_poderes.forca, tb_poderes.carisma, tb_poderes.percepcao 
+	from tb_personagem inner join tb_poderes
+		on tb_personagem.id = tb_poderes.id 
