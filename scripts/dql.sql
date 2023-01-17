@@ -30,3 +30,15 @@ select tb_personagem.nome, tb_poderes.velocidade, tb_poderes.furtividade, tb_pod
 -- Ver experiencia do personagem
 select tb_personagem.nome, tb_personagem.experiencia
 	from tb_personagem 
+
+-- Ver quantidade de honra do personagem
+select tb_personagem.nome, tb_personagem.qtd_honra
+	from tb_personagem 
+
+-- Ver quantidade de defesa do personagem
+select tb_personagem.nome, tb_personagem.qtd_defesa
+	from tb_personagem
+
+-- Ver quantidade de ataque do personagem
+select tb_personagem.nome, tb_personagem.qtd_ataque 
+	from tb_personagem
