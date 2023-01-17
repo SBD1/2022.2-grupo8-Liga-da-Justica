@@ -11,10 +11,17 @@
 
 ## 2. DER
 
-### Versão Atual (1.3)
+### Versão 1.2 (atual)
 <img src= 'imgs/MREL.v.3.0.png'> </img>
 <div style="text-align: center">
-<p>Figura 1: MREL v.1.3</p>
+<p>Figura 1: MREL v.1.2</p>
+<p style="margin-top: -1%; font-size: 12px">Fonte: Elaboração própria</p>
+</div>
+
+### Versão 1.1
+<img src= 'imgs/MREL.v.2.png'> </img>
+<div style="text-align: center">
+<p>Figura 2: MREL v.1.1</p>
 <p style="margin-top: -1%; font-size: 12px">Fonte: Elaboração própria</p>
 </div>
 
@@ -25,9 +32,3 @@
 <p style="margin-top: -1%; font-size: 12px">Fonte: Elaboração própria</p>
 </div>
 
-### Versão 1.2
-<img src= 'imgs/MREL.v.2.png'> </img>
-<div style="text-align: center">
-<p>Figura 2: MREL v.1.2</p>
-<p style="margin-top: -1%; font-size: 12px">Fonte: Elaboração própria</p>
-</div>
