@@ -32,3 +32,24 @@ insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoD
 UPDATE tb_personagem SET experiencia = 600 WHERE nome = 'ExpTeste';
 SELECT nivel FROM tb_personagem WHERE nome = 'ExpTeste';
 -- Expected output: 6
+
+-- Delete inventario, not tested yet
+CREATE OR REPLACE FUNCTION zerar_inventario_func() RETURNS TRIGGER AS $$
+BEGIN
+    IF (NEW.QTD_PontosDeVida = 0) THEN
+        DELETE FROM tb_inventario WHERE ID_Personagem = NEW.ID_Personagem;
+       raise notice 'O inventario foi apagado'; 
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+--
+CREATE TRIGGER zerar_inventario
+AFTER UPDATE ON tb_personagem
+FOR EACH ROW
+EXECUTE FUNCTION zerar_inventario_func();
+-- Test Case - ID needed 
+insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (84, 3, 'Joao', 10, 100, 0, 120, 145, 5, 3, 2, 1, 8, 1, 1, 2, 1, 2);
+insert into tb_inventario(capacidade, qtd_atual,qtd_dinheiro, id_personagem) values (99, 1, 50, 8);
+UPDATE tb_personagem SET QTD_PontosDeVida = 0 WHERE Nome = 'Joao';
+SELECT * FROM tb_inventario WHERE ID_Personagem = (SELECT ID_Personagem FROM tb_personagem WHERE Nome = 'Joao');
