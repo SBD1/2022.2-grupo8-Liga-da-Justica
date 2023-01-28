@@ -26,6 +26,8 @@ Repositório para aplicar os conceitos aprendidos na disciplina de Sistema de Ba
 
 <a href="https://www.youtube.com/watch?v=4aodH7TfQRc">Apresentação 1</a> <br>
 
+<a href="https://drive.google.com/file/d/1yRPaw9iSaN7Ds6yA1fSPLLGteZbLB-yd/view?usp=share_link">Apresentação 2</a> <br>
+
 ## Executando o Projeto
 ```bash
 # Clone o repositório
