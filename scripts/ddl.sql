@@ -1,4 +1,3 @@
-CREATE TYPE multiply_poder AS ENUM ('1', '2', '3', '4', '5');
 
 --Mapa
 create table tb_mapa(
@@ -13,7 +12,7 @@ create table tb_regiao(
    	posicao_x int not null,
    	posicao_y int not null,
    	id_localMapa int not null,
-   	constraint  fk_LocalMapa foreign key(id_localMapa)  references tb_mapa (id)
+   	constraint  fk_localMapa foreign key(id_localMapa)  references tb_mapa (id)
 );
 
 -- Item
@@ -117,14 +116,7 @@ create table tb_npc_ajudante(
 	constraint  fk_npc foreign key(id_npc)  references tb_npc (id)
 );
 
--- npc mentor
-create table tb_npc_mentor(
-	id serial constraint pk_id_mentor primary key,
-	id_npc int not null,
-	nome varchar(30) not null,
-	MULT_poder multiply_poder,
-	constraint  fk_npc foreign key(id_npc)  references tb_npc (id)
-);
+
 
 -- npc inimigo
 create table tb_npc_inimigo(
@@ -266,6 +258,19 @@ CREATE TABLE tb_classe_brutamonte(
     id_classe int not null, 
     nome varchar(30) not null,
     constraint fk_id_classe foreign key(id_classe) references tb_classe (id)
+);
+
+-- npc mentor
+ create table tb_npc_mentor(
+	id serial constraint pk_id_mentor primary key,
+	id_npc int not null,
+	nome varchar(30) not null,
+	id_classe int not null,
+	id_faccao int not null, 
+	MULT_poder int,
+	constraint  fk_npc foreign key(id_npc)  references tb_npc (id),
+	constraint  fk_classe foreign key(id_classe)  references tb_classe (id),
+	constraint  fk_faccao foreign key(id_faccao)  references tb_faccao (id)
 );
 
 -- Personagem
