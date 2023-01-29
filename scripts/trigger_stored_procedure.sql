@@ -1,4 +1,4 @@
--- TRIGGERS PARA MANTER AS REGRAS DE GENERALIZAÇÃO E ESPECIALIZAÇÃO 
+-- TRIGGERS DE REGRAS DE GENERALIZAÇÃO E ESPECIALIZAÇÃO 
 
 create trigger personagem_ja_existe
 before update or insert on tb_personagem 
@@ -89,23 +89,38 @@ CREATE TRIGGER  "tg_criaTbPoder " before INSERT
 ON tb_personagem FOR EACH ROW 
     EXECUTE function  criarPoderPersonagem();
 
---Trigger de morte do personagem e perda de dinheiro 
+--Trigger de morte/respawn do personagem e perda de dinheiro 
 
-create trigger pers_death
-after update on tb_personagem
-for each row execute procedure pers_death();
-
-create or replace function pers_death() returns trigger as $pers_morte$
+create or replace function tg_pers_morte() returns trigger as $tg_pers_morte$
 begin 
-    if (new.QTD_PontosDeVida = 0) then 
+	if (new.QTD_PontosDeVida = 0) then 
    	   update tb_inventario 
    	   set qtd_dinheiro = '0'
    	   where id_personagem = new.id;
-       raise notice 'O personagem perdeu todo dinheiro'; 
     end if;
     return new;
 end;
-$pers_morte$ language plpgsql;
+$tg_pers_morte$ language plpgsql;
+
+create trigger tg_pers_morte
+after update on tb_personagem
+for each row execute procedure tg_pers_morte();
+
+CREATE OR REPLACE FUNCTION tg_respawn_personagem()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.QTD_PontosDeVida = 0 THEN
+    NEW.id_Local_Atual := 1;
+    RAISE NOTICE 'Você morreu e perdeu todo dinheiro em seu inventário';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tg_respawn_personagem_trigger
+BEFORE INSERT OR UPDATE ON tb_personagem
+FOR EACH ROW
+EXECUTE FUNCTION tg_respawn_personagem();
 
 
 -- Função que atualiza o nivel de acordo com a experiencia ( exp/100)
