@@ -54,3 +54,22 @@ $$
 CREATE TRIGGER  "tg_criaTbPoder " before INSERT 
 ON tb_personagem FOR EACH ROW 
     EXECUTE function  criarPoderPersonagem();
+
+--Trigger de morte do personagem e perda de dinheiro 
+
+create trigger pers_death
+after update on tb_personagem
+for each row execute procedure pers_death();
+
+create or replace function pers_death() returns trigger as $pers_morte$
+begin 
+    if (new.QTD_PontosDeVida = 0) then 
+   	   update tb_inventario 
+   	   set qtd_dinheiro = '0'
+   	   where id_personagem = new.id;
+       raise notice 'O personagem perdeu todo dinheiro'; 
+    end if;
+    return new;
+end;
+$pers_morte$ language plpgsql;
+
