@@ -107,3 +107,20 @@ begin
 end;
 $pers_morte$ language plpgsql;
 
+
+-- Função que atualiza o nivel de acordo com a experiencia ( exp/100)
+CREATE OR REPLACE FUNCTION increase_character_level() RETURNS TRIGGER AS $$
+BEGIN
+  --IF NEW.experiencia >= (OLD.nivel * 10) THEN
+    UPDATE tb_personagem SET nivel = (NEW.experiencia / 100) WHERE id = OLD.id;
+  --END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger que é chamado toda vez que tem uma atualização na experiencia
+CREATE TRIGGER increase_level
+AFTER UPDATE OF experiencia ON tb_personagem
+FOR EACH ROW
+EXECUTE FUNCTION increase_character_level();
+
