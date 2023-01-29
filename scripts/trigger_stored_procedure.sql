@@ -44,6 +44,12 @@ indMagia int := 1;
 indForca int := 1; 
 indCarisma int := 1;
 indPercepcao int := 1;
+RacaindVelocidade int := 0;
+RacaindFurtividade int := 0; 
+RacaindMagia int := 0;
+RacaindForca int := 0; 
+RacaindCarisma int := 0;
+RacaindPercepcao int := 0;
 begin
 
 case
@@ -53,11 +59,22 @@ case
 	when (new.id_classe = '4') then select i.ind_percepcao, i.ind_furtividade, i.ind_carisma from tb_classe_detetive i into indPercepcao, indFurtividade, indCarisma; 
 	when (new.id_classe = '5') then select i.ind_forca, i.ind_velocidade from tb_classe_brutamonte i into indForca, indVelocidade; 
 else 
-	raise exception 'Id não existente';
+	raise exception 'Id de Classe não existente';
+
+end case;
+
+case
+	when (new.id_raca = '1') then select i.ind_percepcao, i.ind_furtividade, i.ind_carisma from tb_raca_humano i into RacaindPercepcao, RacaindFurtividade, RacaindCarisma; 
+	when (new.id_raca = '2') then select i.ind_magia, i.ind_percepcao, i.ind_velocidade from tb_raca_homi_magi  i into RacaindMagia, RacaindPercepcao, RacaindVelocidade; 
+	when (new.id_raca = '3') then select i.ind_forca, i.ind_velocidade, i.ind_carisma from tb_raca_amazonas i into RacaindForca, RacaindVelocidade, RacaindCarisma; 
+	when (new.id_raca = '4') then select i.ind_forca, i.ind_furtividade, i.ind_velocidade from tb_raca_atlante i into RacaindForca, RacaindFurtividade, RacaindVelocidade; 
+	when (new.id_raca = '5') then select i.ind_forca, i.ind_percepcao, i.ind_velocidade from tb_raca_alien i into RacaindForca, RacaindPercepcao, RacaindVelocidade; 
+else 
+	raise exception 'Id de Classe não existente';
 
 end case;
 		
-	insert into tb_poderes(Velocidade, Furtividade, Magia, Forca, Carisma, Percepcao) values (indVelocidade, indFurtividade, indMagia, indForca, indCarisma, indPercepcao) RETURNING id into idPoder;
+	insert into tb_poderes(Velocidade, Furtividade, Magia, Forca, Carisma, Percepcao) values (indVelocidade + RacaindVelocidade , indFurtividade + RacaindFurtividade, indMagia + RacaindMagia, indForca + RacaindForca, indCarisma + RacaindCarisma, indPercepcao + RacaindPercepcao) RETURNING id into idPoder;
 	new.id_poder := idPoder;
 	
 return new;
