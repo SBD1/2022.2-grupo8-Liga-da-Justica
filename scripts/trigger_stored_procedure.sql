@@ -34,13 +34,30 @@ $$
 
 -- Função para criar a tabela de poder ao criar um personagem 
 
-CREATE OR REPLACE FUNCTION criarPoderPersonagem() RETURNS TRIGGER  AS
+ CREATE OR REPLACE FUNCTION criarPoderPersonagem() RETURNS TRIGGER  AS
 $$
 DECLARE
 idPoder int;
+indVelocidade int := 1;
+indFurtividade int := 1; 
+indMagia int := 1;
+indForca int := 1; 
+indCarisma int := 1;
+indPercepcao int := 1;
 begin
-	
-	insert into tb_poderes(Velocidade, Furtividade, Magia, Forca, Carisma, Percepcao) values ('4', '4', '4', '4', '4', '4') RETURNING id into idPoder;
+
+case
+	when (new.id_classe = '1') then select i.ind_percepcao, i.ind_velocidade from tb_classe_velocista i into indPercepcao, indVelocidade; 
+	when (new.id_classe = '2') then select i.ind_magia, i.ind_carisma from tb_classe_magico i into indMagia, indCarisma; 
+	when (new.id_classe = '3') then select i.ind_forca, i.ind_velocidade from tb_classe_combatente i into indForca, indVelocidade; 
+	when (new.id_classe = '4') then select i.ind_percepcao, i.ind_furtividade, i.ind_carisma from tb_classe_detetive i into indPercepcao, indFurtividade, indCarisma; 
+	when (new.id_classe = '5') then select i.ind_forca, i.ind_velocidade from tb_classe_brutamonte i into indForca, indVelocidade; 
+else 
+	raise exception 'Id não existente';
+
+end case;
+		
+	insert into tb_poderes(Velocidade, Furtividade, Magia, Forca, Carisma, Percepcao) values (indVelocidade, indFurtividade, indMagia, indForca, indCarisma, indPercepcao) RETURNING id into idPoder;
 	new.id_poder := idPoder;
 	
 return new;
