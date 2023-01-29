@@ -345,3 +345,12 @@ create table tb_npc_mercador(
 	constraint  fk_npc foreign key(id_npc)  references tb_npc (id),
 	constraint fk_InstaItem foreign key(id_instancia_item)  references tb_instancia_item (id)
 );
+
+-- batalha
+create table tb_batalha(
+	id serial constraint pk_id_batalha primary key,
+	id_npc_inimigo  int not null,
+	id_personagem int not null,
+	constraint fk_id_personagem foreign key(id_personagem) references tb_personagem(id),
+	constraint fk_npc_inimigo foreign key(id_npc_inimigo) references tb_npc_inimigo (id)
+);
