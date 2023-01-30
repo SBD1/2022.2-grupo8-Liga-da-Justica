@@ -139,3 +139,41 @@ AFTER UPDATE OF experiencia ON tb_personagem
 FOR EACH ROW
 EXECUTE FUNCTION increase_character_level();
 
+
+--Função que inicia uma batalha, mostra o vencedor e calcula a vida atual
+CREATE OR REPLACE FUNCTION iniciar_batalha()
+RETURNS TRIGGER AS $$
+
+  DECLARE dano_inimigo INT;
+  DECLARE qtd_ataque_personagem INT;
+  DECLARE vida_inimigo INT;
+  DECLARE vida_personagem INT;
+ 
+ begin
+  select qtd_pontosdevida into vida_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
+  select vida into vida_inimigo from tb_npc_inimigo WHERE tb_npc_inimigo.id = NEW.id_npc_inimigo;
+  SELECT dano INTO dano_inimigo FROM tb_npc_inimigo WHERE tb_npc_inimigo.id = NEW.id_npc_inimigo;
+
+  SELECT qtd_ataque INTO qtd_ataque_personagem FROM tb_personagem WHERE tb_personagem.id = NEW.id_personagem;
+
+  IF qtd_ataque_personagem >= dano_inimigo then
+  	  vida_inimigo := vida_inimigo - (qtd_ataque_personagem - dano_inimigo);
+      UPDATE tb_npc_inimigo SET vida = vida_inimigo WHERE id = NEW.id_npc_inimigo;
+    RAISE NOTICE 'Personagem venceu a batalha';
+   	update tb_batalha set vencedor = 'Personagem' where id = new.id;
+  else
+  	vida_personagem := vida_personagem - (dano_inimigo - qtd_ataque_personagem);
+    UPDATE tb_personagem SET qtd_pontosdevida  = vida_personagem WHERE id = NEW.id_personagem;
+    RAISE NOTICE 'NPC inimigo venceu a batalha';
+   	update tb_batalha set vencedor = 'NPC' where id = new.id;
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+--Trigger que é chamado toda vez que se inicia uma batalha
+CREATE TRIGGER iniciar_batalha_trigger
+AFTER INSERT ON tb_batalha
+FOR EACH ROW
+EXECUTE FUNCTION iniciar_batalha();
