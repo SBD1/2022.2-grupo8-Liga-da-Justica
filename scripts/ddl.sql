@@ -125,6 +125,7 @@ create table tb_npc_inimigo(
 	nome varchar(30) not null,
 	vida int not null,
 	dano int not null,
+	experiencia int not null,
 	constraint  fk_npc foreign key(id_npc)  references tb_npc (id)
 );
 

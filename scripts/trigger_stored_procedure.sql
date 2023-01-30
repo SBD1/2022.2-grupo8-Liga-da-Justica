@@ -148,19 +148,23 @@ RETURNS TRIGGER AS $$
   DECLARE qtd_ataque_personagem INT;
   DECLARE vida_inimigo INT;
   DECLARE vida_personagem INT;
+  declare xp_inimigo int;
+  declare xp_personagem int;
  
  begin
   select qtd_pontosdevida into vida_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
+  select experiencia into xp_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
+  SELECT qtd_ataque INTO qtd_ataque_personagem FROM tb_personagem WHERE tb_personagem.id = NEW.id_personagem;
   select vida into vida_inimigo from tb_npc_inimigo WHERE tb_npc_inimigo.id = NEW.id_npc_inimigo;
   SELECT dano INTO dano_inimigo FROM tb_npc_inimigo WHERE tb_npc_inimigo.id = NEW.id_npc_inimigo;
-
-  SELECT qtd_ataque INTO qtd_ataque_personagem FROM tb_personagem WHERE tb_personagem.id = NEW.id_personagem;
-
+  select experiencia into xp_inimigo from tb_npc_inimigo WHERE tb_npc_inimigo.id = NEW.id_npc_inimigo;
+  
   IF qtd_ataque_personagem >= dano_inimigo then
   	  vida_inimigo := vida_inimigo - (qtd_ataque_personagem - dano_inimigo);
       UPDATE tb_npc_inimigo SET vida = vida_inimigo WHERE id = NEW.id_npc_inimigo;
     RAISE NOTICE 'Personagem venceu a batalha';
    	update tb_batalha set vencedor = 'Personagem' where id = new.id;
+   	update tb_personagem set experiencia = xp_personagem + xp_inimigo where id = new.id_personagem;
   else
   	vida_personagem := vida_personagem - (dano_inimigo - qtd_ataque_personagem);
     UPDATE tb_personagem SET qtd_pontosdevida  = vida_personagem WHERE id = NEW.id_personagem;
