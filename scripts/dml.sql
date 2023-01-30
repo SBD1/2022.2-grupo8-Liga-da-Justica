@@ -254,6 +254,11 @@ insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoD
 insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (84, 3, 'Perillo', 89, 100, 0, 120, 145, 5, 3, 2, 1, 8, 1, 1, 2, 1, 2);
 insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (66, 2, 'Gabgordon', 89, 100, 0, 120, 145,  5, 3, 2, 1, 7, 2, 2, 3, 2, 3);
 
+--batalha
+insert into tb_batalha(id_npc_inimigo, id_personagem) values (1, 1);
+insert into tb_batalha(id_npc_inimigo, id_personagem) values (3, 2);
+insert into tb_batalha(id_npc_inimigo, id_personagem) values (2, 3);
+
 --inventario
 insert into tb_inventario (capacidade, qtd_atual,qtd_dinheiro, id_personagem)
 values (99,1,50,1), (98,2,50,2), (97,3,51,3);
