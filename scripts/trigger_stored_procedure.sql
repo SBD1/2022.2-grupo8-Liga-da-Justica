@@ -209,7 +209,7 @@ BEGIN
     IF rowWeapons > 0 THEN        
       -- Retorna a arma que está sendo utilizada pelo personagem
       SELECT tiea.mult_ataque FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_arma tiea
-      where inv.id_personagem = ${ID} and tiea.id_equipamento = id_item
+      where inv.id_personagem = id_p and tiea.id_equipamento = id_item
       and item.id_inventario = inv.id and tiea.id_equipamento = arma_atual into arma_personagem;
     else
       raise notice 'Não possue arma indicada'
