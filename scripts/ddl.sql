@@ -292,6 +292,7 @@ create table tb_personagem(
 	QTD_Honra int not null,
 	QTD_Defesa int not null,
 	QTD_Ataque int not null,
+	QTD_Mortes int,
 	id_poder int not null,
 	id_Local_Atual int not null,
 	id_ajudante int,
@@ -307,7 +308,6 @@ create table tb_personagem(
 	constraint fk_faccao foreign key(id_faccao) references tb_faccao (id),
 	constraint fk_raca foreign key(id_raca) references tb_raca (id)
 );
-
 -- Inventario
 create table tb_inventario(
 	id serial not null, 

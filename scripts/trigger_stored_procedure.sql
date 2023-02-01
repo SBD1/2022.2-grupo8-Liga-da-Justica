@@ -23,8 +23,8 @@ idMentor int;
 begin
 	select tb_npc_mentor.id into idMentor from tb_npc_mentor where id_classe = idClasse and id_faccao = idFaccao;
 
-    insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) 
-   values (0, 1, nome, 100, 100, sexo , 100, 100, 50, 0, 0, 1 , 1, null, idMentor, idClasse , idFaccao , idRaca);
+    insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, QTD_Mortes, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) 
+   values (0, 1, nome, 100, 100, sexo , 100, 100, 50, 0, 0, 0, 1 , 1, null, idMentor, idClasse , idFaccao , idRaca);
 
 END
 $$
@@ -95,30 +95,23 @@ begin
    	   update tb_inventario 
    	   set qtd_dinheiro = '0'
    	   where id_personagem = new.id;
+   	   new.qtd_mortes = old.qtd_mortes + 1;
+   	   new.QTD_PontosDeVida := 100;
+   	   		if (new.id_faccao = 1) then
+   	   		new.id_local_atual := '26';
+   	   		raise notice 'Seu herói morreu e perdeu todo o dinheiro';
+   	   		elseif (new.id_faccao = 2) then
+   	   		new.id_local_atual := '51';
+   	   		raise notice 'Seu vilão morreu e perdeu todo o dinheiro';
+   	   		end if;
     end if;
     return new;
 end;
 $tg_pers_morte$ language plpgsql;
 
 create trigger tg_pers_morte
-after update on tb_personagem
+before update on tb_personagem
 for each row execute procedure tg_pers_morte();
-
-CREATE OR REPLACE FUNCTION tg_respawn_personagem()
-RETURNS TRIGGER AS $$
-BEGIN
-  IF NEW.QTD_PontosDeVida = 0 THEN
-    NEW.id_Local_Atual := 1;
-    RAISE NOTICE 'Você morreu e perdeu todo dinheiro em seu inventário';
-  END IF;
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER tg_respawn_personagem_trigger
-BEFORE INSERT OR UPDATE ON tb_personagem
-FOR EACH ROW
-EXECUTE FUNCTION tg_respawn_personagem();
 
 
 -- Função que atualiza o nivel de acordo com a experiencia ( exp/100)
