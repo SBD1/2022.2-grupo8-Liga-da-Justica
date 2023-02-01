@@ -95,6 +95,7 @@ begin
    	   update tb_inventario 
    	   set qtd_dinheiro = '0'
    	   where id_personagem = new.id;
+   	   new.qtd_mortes = old.qtd_mortes + 1;
    	   new.QTD_PontosDeVida := 100;
    	   		if (new.id_faccao = 1) then
    	   		new.id_local_atual := '26';
