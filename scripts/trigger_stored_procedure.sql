@@ -34,53 +34,52 @@ $$
 -- Função para criar a tabela de poder ao criar um personagem 
 
  CREATE OR REPLACE FUNCTION criarPoderPersonagem() RETURNS TRIGGER  AS
-$$
-DECLARE
-idPoder int;
-indVelocidade int := 1;
-indFurtividade int := 1; 
-indMagia int := 1;
-indForca int := 1; 
-indCarisma int := 1;
-indPercepcao int := 1;
-RacaindVelocidade int := 0;
-RacaindFurtividade int := 0; 
-RacaindMagia int := 0;
-RacaindForca int := 0; 
-RacaindCarisma int := 0;
-RacaindPercepcao int := 0;
-begin
+  $$
+  DECLARE
+  idPoder int;
+  indVelocidade int := 1;
+  indFurtividade int := 1; 
+  indMagia int := 1;
+  indForca int := 1; 
+  indCarisma int := 1;
+  indPercepcao int := 1;
+  RacaindVelocidade int := 0;
+  RacaindFurtividade int := 0; 
+  RacaindMagia int := 0;
+  RacaindForca int := 0; 
+  RacaindCarisma int := 0;
+  RacaindPercepcao int := 0;
+  begin
 
-case
-	when (new.id_classe = '1') then select i.ind_percepcao, i.ind_velocidade from tb_classe_velocista i into indPercepcao, indVelocidade; 
-	when (new.id_classe = '2') then select i.ind_magia, i.ind_carisma from tb_classe_magico i into indMagia, indCarisma; 
-	when (new.id_classe = '3') then select i.ind_forca, i.ind_velocidade from tb_classe_combatente i into indForca, indVelocidade; 
-	when (new.id_classe = '4') then select i.ind_percepcao, i.ind_furtividade, i.ind_carisma from tb_classe_detetive i into indPercepcao, indFurtividade, indCarisma; 
-	when (new.id_classe = '5') then select i.ind_forca, i.ind_velocidade from tb_classe_brutamonte i into indForca, indVelocidade; 
-else 
-	raise exception 'Id de Classe não existente';
+  case
+    when (new.id_classe = '1') then select i.ind_percepcao, i.ind_velocidade from tb_classe_velocista i into indPercepcao, indVelocidade; 
+    when (new.id_classe = '2') then select i.ind_magia, i.ind_carisma from tb_classe_magico i into indMagia, indCarisma; 
+    when (new.id_classe = '3') then select i.ind_forca, i.ind_velocidade from tb_classe_combatente i into indForca, indVelocidade; 
+    when (new.id_classe = '4') then select i.ind_percepcao, i.ind_furtividade, i.ind_carisma from tb_classe_detetive i into indPercepcao, indFurtividade, indCarisma; 
+    when (new.id_classe = '5') then select i.ind_forca, i.ind_velocidade from tb_classe_brutamonte i into indForca, indVelocidade; 
+  else 
+    raise exception 'Id de Classe não existente';
 
-end case;
+  end case;
 
-case
-	when (new.id_raca = '1') then select i.ind_percepcao, i.ind_furtividade, i.ind_carisma from tb_raca_humano i into RacaindPercepcao, RacaindFurtividade, RacaindCarisma; 
-	when (new.id_raca = '2') then select i.ind_magia, i.ind_percepcao, i.ind_velocidade from tb_raca_homi_magi  i into RacaindMagia, RacaindPercepcao, RacaindVelocidade; 
-	when (new.id_raca = '3') then select i.ind_forca, i.ind_velocidade, i.ind_carisma from tb_raca_amazonas i into RacaindForca, RacaindVelocidade, RacaindCarisma; 
-	when (new.id_raca = '4') then select i.ind_forca, i.ind_furtividade, i.ind_velocidade from tb_raca_atlante i into RacaindForca, RacaindFurtividade, RacaindVelocidade; 
-	when (new.id_raca = '5') then select i.ind_forca, i.ind_percepcao, i.ind_velocidade from tb_raca_alien i into RacaindForca, RacaindPercepcao, RacaindVelocidade; 
-else 
-	raise exception 'Id de Classe não existente';
+  case
+    when (new.id_raca = '1') then select i.ind_percepcao, i.ind_furtividade, i.ind_carisma from tb_raca_humano i into RacaindPercepcao, RacaindFurtividade, RacaindCarisma; 
+    when (new.id_raca = '2') then select i.ind_magia, i.ind_percepcao, i.ind_velocidade from tb_raca_homi_magi  i into RacaindMagia, RacaindPercepcao, RacaindVelocidade; 
+    when (new.id_raca = '3') then select i.ind_forca, i.ind_velocidade, i.ind_carisma from tb_raca_amazonas i into RacaindForca, RacaindVelocidade, RacaindCarisma; 
+    when (new.id_raca = '4') then select i.ind_forca, i.ind_furtividade, i.ind_velocidade from tb_raca_atlante i into RacaindForca, RacaindFurtividade, RacaindVelocidade; 
+    when (new.id_raca = '5') then select i.ind_forca, i.ind_percepcao, i.ind_velocidade from tb_raca_alien i into RacaindForca, RacaindPercepcao, RacaindVelocidade; 
+  else 
+    raise exception 'Id de Classe não existente';
 
-end case;
-		
-	insert into tb_poderes(Velocidade, Furtividade, Magia, Forca, Carisma, Percepcao) values (indVelocidade + RacaindVelocidade , indFurtividade + RacaindFurtividade, indMagia + RacaindMagia, indForca + RacaindForca, indCarisma + RacaindCarisma, indPercepcao + RacaindPercepcao) RETURNING id into idPoder;
-	new.id_poder := idPoder;
-	
-return new;
+  end case;
+      
+    insert into tb_poderes(Velocidade, Furtividade, Magia, Forca, Carisma, Percepcao) values (indVelocidade + RacaindVelocidade , indFurtividade + RacaindFurtividade, indMagia + RacaindMagia, indForca + RacaindForca, indCarisma + RacaindCarisma, indPercepcao + RacaindPercepcao) RETURNING id into idPoder;
+    new.id_poder := idPoder;
+    
+  return new;
 
-END
-$$
-  LANGUAGE 'plpgsql';
+END 
+$$ LANGUAGE 'plpgsql';
 
 --Trigger para inserção de personagem 
 
@@ -195,3 +194,86 @@ CREATE TRIGGER iniciar_batalha_trigger
 AFTER INSERT ON tb_batalha
 FOR EACH ROW
 EXECUTE FUNCTION iniciar_batalha();
+
+CREATE OR REPLACE FUNCTION Calcular_ataque(id_p int,arma_atual) RETURNS Int AS $$
+
+DECLARE 
+  arma_personagem int;
+  rowWeapons int;
+  Mult_atq INT;
+
+BEGIN
+
+    --Recupera ataque do personagem
+    SELECT QTD_Ataque into Mult_atq from tb_personagem where id = id_p;
+
+    --Seleciona armas do personagem
+    SELECT count(*) FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_arma tiea
+    where inv.id_personagem = id_p and tiea.id_equipamento = item.id_item 
+    and item.id_inventario = inv.id and tiea.id_equipamento = arma_atual into rowWeapons;
+
+
+    IF rowWeapons > 0 THEN        
+      -- Retorna a arma que está sendo utilizada pelo personagem
+      SELECT tiea.mult_ataque FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_arma tiea
+      where inv.id_personagem = ${ID} and tiea.id_equipamento = id_item
+      and item.id_inventario = inv.id and tiea.id_equipamento = arma_atual into arma_personagem;
+    else
+      raise notice 'Não possue arma indicada'
+      return Mult_atq;
+    END IF;
+
+    Mult_atq := Mult_atq + arma_personagem;
+
+  --END IF;
+  RETURN Mult_atq;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Chamada exemplo da função calcular_ataque
+SELECT Calcular_ataque(1,1);
+
+CREATE OR REPLACE FUNCTION consumir_item(id_p int, id_consumivel int) returns void as $$
+
+DECLARE
+  atq int;
+  poder int;
+  pontos_de_vida int;
+  pontos_de_estamina int;
+  rowItems int;
+  personagem tb_personagem%ROWTYPE;
+
+BEGIN
+	
+  SELECT count(*)  
+  FROM  tb_instancia_item tii ,tb_item_consumivel tbc, tb_inventario inv
+  WHERE inv.id_personagem = id_p and tii.id_inventario  = inv.id
+  and tbc.id_item = tii.id_item  and tbc.id_item = id_consumivel into rowItems;
+  
+ IF rowItems > 0 THEN
+ 
+	  SELECT tbc.mult_ataque,tbc.mult_poder, tbc.mult_qtd_pontosdevida, tbc.mult_qtd_ponstosdestamina  
+	  FROM  tb_instancia_item tii ,tb_item_consumivel tbc, tb_inventario inv
+	  WHERE inv.id_personagem = id_p and tii.id_inventario  = inv.id
+	  and tbc.id_item = tii.id_item  and tbc.id_item = id_consumivel into atq,poder,pontos_de_vida,
+	  pontos_de_estamina;
+
+    SELECT * FROM tb_personagem where id = id_p into personagem;
+    personagem.qtd_ataque := personagem.qtd_ataque + atq;
+ 	  personagem.QTD_PontosDeVida := personagem.QTD_PontosDeVida + pontos_de_vida;
+    personagem.QTD_PontosDeEstamina := personagem.QTD_PontosDeEstamina + pontos_de_Estamina;
+	  -- Falta mult_poder
+   
+    UPDATE tb_personagem SET qtd_ataque = personagem.qtd_ataque WHERE id = id_p;
+   	UPDATE tb_personagem SET QTD_PontosDeVida = personagem.QTD_PontosDeVida WHERE id = id_p;
+ 	  UPDATE tb_personagem SET QTD_PontosDeEstamina = personagem.QTD_PontosDeEstamina WHERE id = id_p;
+    -- Falta mult_poder
+  else
+    raise notice 'Nenhum item consumivel encontrado';
+  END IF;
+ 
+END;
+$$ LANGUAGE plpgsql;
+
+--Chamada exemplo da função consumir_item
+select consumir_item(1,18);
