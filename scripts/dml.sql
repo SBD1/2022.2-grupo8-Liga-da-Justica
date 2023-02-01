@@ -234,25 +234,31 @@ insert into tb_classe_detetive(IND_Furtividade, IND_Carisma, IND_percepcao, id_c
 insert into tb_classe_brutamonte(IND_Forca, IND_Velocidade, id_classe, nome) values (7, 4, 5, 'Brutamonte');
 
 --npc
-insert into tb_npc(nome, id_regiao) values ('Flash', 38);
-insert into tb_npc(nome, id_regiao) values ('Zoom', 63);
-insert into tb_npc(nome, id_regiao) values ('Zatana', 38);
-insert into tb_npc(nome, id_regiao) values ('Felix Fausto', 63);
-insert into tb_npc(nome, id_regiao) values ('Mulher-Maravilha', 38);
-insert into tb_npc(nome, id_regiao) values ('Arlequina', 63);
+insert into tb_npc(nome, id_regiao) values ('Flash', 39);
+insert into tb_npc(nome, id_regiao) values ('Zoom', 54);
+insert into tb_npc(nome, id_regiao) values ('Zatana', 44);
+insert into tb_npc(nome, id_regiao) values ('Felix Fausto', 59);
+insert into tb_npc(nome, id_regiao) values ('Mulher-Maravilha', 49);
+insert into tb_npc(nome, id_regiao) values ('Arlequina', 64);
 insert into tb_npc(nome, id_regiao) values ('Batman', 38);
-insert into tb_npc(nome, id_regiao) values ('Exterminador', 63);
-insert into tb_npc(nome, id_regiao) values ('Super Homem', 38);
-insert into tb_npc(nome, id_regiao) values ('Bane', 63);
+insert into tb_npc(nome, id_regiao) values ('Exterminador', 69);
+insert into tb_npc(nome, id_regiao) values ('Super Homem', 47);
+insert into tb_npc(nome, id_regiao) values ('Bane', 74);
 insert into tb_npc(nome, id_regiao) values ('Aquaman', 28);
 insert into tb_npc(nome, id_regiao) values ('Robin', 29);
 insert into tb_npc(nome, id_regiao) values ('Arqueiro Verde', 30);
-insert into tb_npc(nome, id_regiao) values ('Coringa', 2);
-insert into tb_npc(nome, id_regiao) values ('Lex Luthor', 3);  
-insert into tb_npc(nome, id_regiao) values ('Vendedor Misterioso', 3); 
-insert into tb_npc(nome, id_regiao) values ('Tralhas velhas', 13); 
-insert into tb_npc(nome, id_regiao) values ('Vendedor Oficial', 26);
-insert into tb_npc(nome, id_regiao) values ('O mercador', 39); 
+insert into tb_npc(nome, id_regiao) values ('Coringa', 63);
+insert into tb_npc(nome, id_regiao) values ('Lex Luthor', 72);  
+insert into tb_npc(nome, id_regiao) values ('Vendedor Misterioso', 7); 
+insert into tb_npc(nome, id_regiao) values ('Tralhas velhas', 57); 
+insert into tb_npc(nome, id_regiao) values ('Vendedor Oficial', 82);
+insert into tb_npc(nome, id_regiao) values ('O mercador', 32);
+insert into tb_npc(nome, id_regiao) values ('Capanga do coringa', 13);
+insert into tb_npc(nome, id_regiao) values ('Mandados do Lex Luthor', 22);
+insert into tb_npc(nome, id_regiao) values ('Comissário Gordon', 80);
+insert into tb_npc(nome, id_regiao) values ('Policial de metrópoles', 88);
+insert into tb_npc(nome, id_regiao) values ('Shazam!', 29);
+insert into tb_npc(nome, id_regiao) values ('Aquaman', 34);
 
 --npc ajudante
 insert into tb_npc_ajudante(id_npc, nome, vida, dano) values (4, 'Robin',  50, 5);
@@ -265,16 +271,22 @@ insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (
 insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (4, 'Felix Fausto', '2','2','2');
 insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (5, 'Mulher-Maravilha', '3','1','2');
 insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (6, 'Arlequina', '3','2','2');
-insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (7, 'Batman', '4','1','2');
+insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (24, 'Shazam!', '5','1','2');
 insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (8, 'Exterminador', '4','2','2');
-insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (9, 'Super Homem', '5','1','2');
+insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (25, 'Aquaman', '5','1','2');
 insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (10, 'Bane', '5','2','2');
 
---npc inimigo
-insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (14, 'Coringa', 150, 15,20, 2);
-insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (15, 'Lex Luthor', 100, 10,20, 2);
-insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (12, 'Robin', 100, 10,20, 1);
-insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (13, 'Arqueiro-verde', 100, 10,20, 1);
+--npc inimigo herói
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (7, 'Batman', 150, 10, 100, 1);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (9, 'Super Homem', 150, 100, 20, 1);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (22, 'Comissário Gordon', 100, 5, 20, 1);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (23, 'Policial de metrópoles', 100, 2, 20, 1);
+
+--npc inimigo vilão
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (14, 'Coringa', 150, 10, 100, 2);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (15, 'Lex Luthor', 150, 10, 100, 2);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (20, 'Capanga do coringa', 100, 3, 20, 2);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (21, 'Mandados do Lex Luthor', 100, 4, 20, 2);
 
 --personagem
 insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, qtd_mortes, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (97, 4, 'Correia', 100, 150, 0, 123, 175, 80, 5, 4, 0, 2, 17, 1, 1, 1, 1, 1);
