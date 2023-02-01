@@ -99,36 +99,6 @@ create table tb_poderes(
 );
 
 
-create table tb_npc(
-	id serial constraint pk_id_npc primary key,
-	nome varchar(30) not null,
-	id_regiao int not null,
-	constraint  fk_regiao foreign key(id_regiao)  references tb_regiao (id)
-);
-
--- npc ajudante
-create table tb_npc_ajudante(
-	id serial constraint pk_id_ajudante primary key,
-	id_npc int not null,
-	nome varchar(30) not null,
-	vida int not null,
-	dano int not null,
-	constraint  fk_npc foreign key(id_npc)  references tb_npc (id)
-);
-
-
-
--- npc inimigo
-create table tb_npc_inimigo(
-	id serial constraint pk_id_inimigo primary key,
-	id_npc int not null,
-	nome varchar(30) not null,
-	vida int not null,
-	dano int not null,
-	experiencia int not null,
-	constraint  fk_npc foreign key(id_npc)  references tb_npc (id)
-);
-
 -- Raça
 create table tb_raca(
    id serial constraint pk_id_raca primary key,
@@ -261,6 +231,13 @@ CREATE TABLE tb_classe_brutamonte(
     constraint fk_id_classe foreign key(id_classe) references tb_classe (id)
 );
 
+create table tb_npc(
+	id serial constraint pk_id_npc primary key,
+	nome varchar(30) not null,
+	id_regiao int not null,
+	constraint  fk_regiao foreign key(id_regiao)  references tb_regiao (id)
+);
+
 -- npc mentor
  create table tb_npc_mentor(
 	id serial constraint pk_id_mentor primary key,
@@ -272,6 +249,33 @@ CREATE TABLE tb_classe_brutamonte(
 	constraint  fk_npc foreign key(id_npc)  references tb_npc (id),
 	constraint  fk_classe foreign key(id_classe)  references tb_classe (id),
 	constraint  fk_faccao foreign key(id_faccao)  references tb_faccao (id)
+);
+
+
+
+-- npc ajudante
+create table tb_npc_ajudante(
+	id serial constraint pk_id_ajudante primary key,
+	id_npc int not null,
+	nome varchar(30) not null,
+	vida int not null,
+	dano int not null,
+	constraint  fk_npc foreign key(id_npc)  references tb_npc (id)
+);
+
+
+
+-- npc inimigo
+create table tb_npc_inimigo(
+	id serial constraint pk_id_inimigo primary key,
+	id_npc int not null,
+	id_faccao int not null,
+	nome varchar(30) not null,
+	vida int not null,
+	dano int not null,
+	experiencia int not null,
+	constraint  fk_id_faccao foreign key(id_faccao)  references tb_faccao (id),
+	constraint  fk_npc foreign key(id_npc)  references tb_npc (id)
 );
 
 -- Personagem
