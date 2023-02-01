@@ -22,5 +22,6 @@
   "dependencies": {
     "pg": "^8.8.0",
     "readline-sync": "^1.4.10"
-  }
+  },
+  "type": "module"
 }

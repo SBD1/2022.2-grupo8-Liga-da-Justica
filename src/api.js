@@ -1,9 +1,10 @@
-const pg = require("pg");
-const readline = require("readline-sync");
-const fs = require("fs");
+import pg from "pg";
+import { question } from "readline-sync";
+import { readFileSync } from "fs";
 
-var sqlTables = fs.readFileSync("scripts/ddl.sql").toString();
-var sqlData = fs.readFileSync("scripts/dml.sql").toString();
+const { Client } = pg;
+var sqlTables = readFileSync("scripts/ddl.sql").toString();
+var sqlData = readFileSync("scripts/dml.sql").toString();
 
 class Player {
   constructor(id, nome, id_localAtual, pos_x, pos_y) {
@@ -16,7 +17,7 @@ class Player {
 }
 
 class Api {
-  db = new pg.Client({
+  db = new Client({
     user: "postgres",
     host: "localhost",
     database: "postgres",
@@ -106,10 +107,10 @@ class Api {
 }
 
 function askAndReturn(texto) {
-  return readline.question(texto);
+  return question(texto);
 }
 
-main = async () => {
+const main = async () => {
   const api = new Api();
   let player = new Player();
   let posicao = 0;
@@ -159,7 +160,7 @@ main = async () => {
     while (aux != 0) {
       username = askAndReturn("Digite o nome do personagem:");
       try {
-        result = await api.getLogin(username);
+        const result = await api.getLogin(username);
         posicao = await api.getPosicao(result.id_local_atual);
 
         player = new Player(
@@ -180,7 +181,7 @@ main = async () => {
     while (aux != 0) {
       let m = 0;
       try {
-        result = await api.getLogin(username);
+        const result = await api.getLogin(username);
         posicao = await api.getPosicao(result.id_local_atual);
       } catch (error) {
         console.log(error);
@@ -214,7 +215,7 @@ main = async () => {
       }
       if (m == 1) {
         try {
-          pos = await api.findIdPosicao(
+          let pos = await api.findIdPosicao(
             posicao.posicao_x + 1,
             posicao.posicao_y,
             posicao.nome
@@ -226,12 +227,12 @@ main = async () => {
       }
       if (m == 2) {
         try {
-          pos = await api.findIdPosicao(
+          let pos = await api.findIdPosicao(
             posicao.posicao_x - 1,
             posicao.posicao_y,
             posicao.nome
           );
-          console.log(pos.id);
+          console.log(pos);
           await api.updatePosicao(pos.id, player.id);
         } catch (error) {
           console.log(error);
@@ -239,7 +240,7 @@ main = async () => {
       }
       if (m == 3) {
         try {
-          pos = await api.findIdPosicao(
+          let pos = await api.findIdPosicao(
             posicao.posicao_x,
             posicao.posicao_y + 1,
             posicao.nome
@@ -252,12 +253,11 @@ main = async () => {
 
       if (m == 4) {
         try {
-          pos = await api.findIdPosicao(
+          let pos = await api.findIdPosicao(
             posicao.posicao_x,
             posicao.posicao_y - 1,
             posicao.nome
           );
-          console.log(pos.id);
           await api.updatePosicao(pos.id, player.id);
         } catch (error) {
           console.log(error);
@@ -265,7 +265,7 @@ main = async () => {
       }
       if (m == 5) {
         try {
-          pos = await api.findIdPosicao(0, 0, regiao);
+          let pos = await api.findIdPosicao(0, 0, regiao);
           await api.updatePosicao(pos.id, player.id);
         } catch (error) {
           console.log(error);
