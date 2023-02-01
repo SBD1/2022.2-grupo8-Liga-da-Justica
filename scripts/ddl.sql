@@ -352,7 +352,7 @@ create table tb_batalha(
 	id serial constraint pk_id_batalha primary key,
 	id_npc_inimigo  int not null,
 	id_personagem int not null,
-	vencedor varchar (10) not null,
+	vencedor varchar (10),
 	constraint fk_id_personagem foreign key(id_personagem) references tb_personagem(id),
 	constraint fk_npc_inimigo foreign key(id_npc_inimigo) references tb_npc_inimigo (id)
 );

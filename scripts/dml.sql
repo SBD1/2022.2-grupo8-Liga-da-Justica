@@ -245,19 +245,16 @@ insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (
 insert into tb_npc_mentor(id_npc, nome,id_classe,id_faccao, MULT_poder) values (10, 'Bane', '5','2','2');
 
 --npc inimigo
-insert into tb_npc_inimigo(id_npc, nome, vida, dano) values (6, 'Arlequina', 100, 10);
-insert into tb_npc_inimigo(id_npc, nome, vida, dano) values (7, 'Coringa', 150, 15);
-insert into tb_npc_inimigo(id_npc, nome, vida, dano) values (8, 'Lex Luthor', 100, 10);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano,experiencia,id_faccao) values (6, 'Arlequina', 100, 10,20, 2);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (14, 'Coringa', 150, 15,20, 2);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (15, 'Lex Luthor', 100, 10,20, 2);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (7, 'Batman', 100, 10,20, 1);
+insert into tb_npc_inimigo(id_npc, nome, vida, dano, experiencia, id_faccao) values (1, 'Flash', 100, 10,20, 1);
 
 --personagem
 insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (97, 4, 'Correia', 100, 150, 0, 123, 175, 80, 5, 4, 2, 17, 1, 1, 1, 1, 1);
 insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (84, 3, 'Perillo', 89, 100, 0, 120, 145, 5, 3, 2, 1, 8, 1, 1, 2, 1, 2);
 insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) values (66, 2, 'Gabgordon', 89, 100, 0, 120, 145,  5, 3, 2, 1, 7, 2, 2, 3, 2, 3);
-
---batalha
-insert into tb_batalha(id_npc_inimigo, id_personagem) values (1, 1);
-insert into tb_batalha(id_npc_inimigo, id_personagem) values (3, 2);
-insert into tb_batalha(id_npc_inimigo, id_personagem) values (2, 3);
 
 --inventario
 insert into tb_inventario (capacidade, qtd_atual,qtd_dinheiro, id_personagem)
@@ -286,4 +283,4 @@ insert into tb_missao(nivel_min, REQ_Faccao, REQ_Honra, id_personagem, id_instan
 insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(9, 'Vendedor Misterioso', 'Contrabando', 1);
 insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(10, 'Tralhas velhas', 'Itens roubados', 3);
 insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(11, 'Vendedor Oficial' , 'Itens legalizados', 11);
-insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(12, 'O mercador', 'Itens de herois', 8);
+insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(12, 'O mercador', 'Itens de herois', 8)
