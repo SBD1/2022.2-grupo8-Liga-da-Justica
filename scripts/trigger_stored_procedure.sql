@@ -95,9 +95,14 @@ begin
    	   update tb_inventario 
    	   set qtd_dinheiro = '0'
    	   where id_personagem = new.id;
-   	   new.id_Local_Atual := 1;
    	   new.QTD_PontosDeVida := 100;
-   	   raise notice 'Você morreu e perdeu todo o seu dinheiro';
+   	   		if (new.id_faccao = 1) then
+   	   		new.id_local_atual := '26';
+   	   		raise notice 'Seu herói morreu e perdeu todo o dinheiro';
+   	   		elseif (new.id_faccao = 2) then
+   	   		new.id_local_atual := '51';
+   	   		raise notice 'Seu vilão morreu e perdeu todo o dinheiro';
+   	   		end if;
     end if;
     return new;
 end;
