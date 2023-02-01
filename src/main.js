@@ -1,5 +1,6 @@
 import Api from "./api.js";
 import { question } from "readline-sync";
+import { mapa } from "./mapa.js";
 
 class Player {
   constructor(id, nome, id_localAtual, pos_x, pos_y) {
@@ -145,6 +146,8 @@ const main = async () => {
       console.log(
         `Você está em '${posicao.nome} (${posicao.posicao_x}, ${posicao.posicao_y})'`
       );
+      
+      mapa(posicao.posicao_x,posicao.posicao_y);
 
       if (posicao.posicao_x == 4 && posicao.posicao_y == 4) {
         m = askAndReturn(
