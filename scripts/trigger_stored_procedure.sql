@@ -1,9 +1,4 @@
 -- TRIGGERS DE REGRAS DE GENERALIZAÇÃO E ESPECIALIZAÇÃO 
-
-create trigger personagem_ja_existe
-before update or insert on tb_personagem 
-for each row execute procedure personagem_ja_existe();
-
 create or replace function personagem_ja_existe() returns trigger 
 as $personagem_ja_existe$
 begin 
@@ -14,6 +9,10 @@ begin
 	return new;
 end
 $personagem_ja_existe$ language plpgsql;
+
+create trigger personagem_ja_existe
+before insert on tb_personagem 
+for each row execute procedure personagem_ja_existe();
 
 -- Função para criar personagens com poucos parâmetros 
 
@@ -150,14 +149,22 @@ RETURNS TRIGGER AS $$
   DECLARE vida_personagem INT;
   declare xp_inimigo int;
   declare xp_personagem int;
+  declare faccao_personagem int;
+  declare faccao_inimigo int;
+  declare honra_personagem  int;
+
  
  begin
   select qtd_pontosdevida into vida_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
+  select id_faccao into faccao_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
+  select qtd_honra into honra_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
   select experiencia into xp_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
   SELECT qtd_ataque INTO qtd_ataque_personagem FROM tb_personagem WHERE tb_personagem.id = NEW.id_personagem;
   select vida into vida_inimigo from tb_npc_inimigo WHERE tb_npc_inimigo.id = NEW.id_npc_inimigo;
   SELECT dano INTO dano_inimigo FROM tb_npc_inimigo WHERE tb_npc_inimigo.id = NEW.id_npc_inimigo;
   select experiencia into xp_inimigo from tb_npc_inimigo WHERE tb_npc_inimigo.id = NEW.id_npc_inimigo;
+  select id_faccao into faccao_inimigo from tb_npc_inimigo WHERE tb_npc_inimigo.id = NEW.id_npc_inimigo;
+
   
   IF qtd_ataque_personagem >= dano_inimigo then
   	  vida_inimigo := vida_inimigo - (qtd_ataque_personagem - dano_inimigo);
@@ -165,6 +172,13 @@ RETURNS TRIGGER AS $$
     RAISE NOTICE 'Personagem venceu a batalha';
    	update tb_batalha set vencedor = 'Personagem' where id = new.id;
    	update tb_personagem set experiencia = xp_personagem + xp_inimigo where id = new.id_personagem;
+   case 
+   		when (faccao_personagem = '1' and faccao_inimigo ='2') then update tb_personagem set qtd_honra = honra_personagem + 5 where id = new.id_personagem;
+   		when (faccao_personagem = '1' and faccao_inimigo ='1') then update tb_personagem set qtd_honra = honra_personagem - 5 where id = new.id_personagem;
+   		when (faccao_personagem = '2' and faccao_inimigo ='1') then update tb_personagem set qtd_honra = honra_personagem + 5 where id = new.id_personagem;
+   		when (faccao_personagem = '2' and faccao_inimigo ='2') then update tb_personagem set qtd_honra = honra_personagem - 5 where id = new.id_personagem;
+
+   end case;
   else
   	vida_personagem := vida_personagem - (dano_inimigo - qtd_ataque_personagem);
     UPDATE tb_personagem SET qtd_pontosdevida  = vida_personagem WHERE id = NEW.id_personagem;
