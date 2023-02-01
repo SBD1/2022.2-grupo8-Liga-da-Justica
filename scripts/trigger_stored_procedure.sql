@@ -95,30 +95,17 @@ begin
    	   update tb_inventario 
    	   set qtd_dinheiro = '0'
    	   where id_personagem = new.id;
+   	   new.id_Local_Atual := 1;
+   	   new.QTD_PontosDeVida := 100;
+   	   raise notice 'Você morreu e perdeu todo o seu dinheiro';
     end if;
     return new;
 end;
 $tg_pers_morte$ language plpgsql;
 
 create trigger tg_pers_morte
-after update on tb_personagem
+before update on tb_personagem
 for each row execute procedure tg_pers_morte();
-
-CREATE OR REPLACE FUNCTION tg_respawn_personagem()
-RETURNS TRIGGER AS $$
-BEGIN
-  IF NEW.QTD_PontosDeVida = 0 THEN
-    NEW.id_Local_Atual := 1;
-    RAISE NOTICE 'Você morreu e perdeu todo dinheiro em seu inventário';
-  END IF;
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER tg_respawn_personagem_trigger
-BEFORE INSERT OR UPDATE ON tb_personagem
-FOR EACH ROW
-EXECUTE FUNCTION tg_respawn_personagem();
 
 
 -- Função que atualiza o nivel de acordo com a experiencia ( exp/100)
