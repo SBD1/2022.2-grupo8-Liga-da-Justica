@@ -55,3 +55,26 @@ update tb_personagem set id_local_atual = '${id}' where id= '${id}'
 -- Encontar ID de uma posição tendo outros os outros dados
 select * from tb_regiao where posicao_x = '${pos_x}' and posicao_y ='${pos_y}'  and nome = '${nome}'
 
+-- Ver Armas do Personagem
+SELECT tiea.nome, tiea.mult_ataque FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_arma tiea
+WHERE inv.id_personagem = '${id_personagem}' AND tiea.id_equipamento = item.id_item 
+AND item.id_inventario = inv.id;
+
+--Ver Armaduras do personagem
+SELECT tiea.nome, tiea.descricao, tiea.mult_defesa
+FROM  tb_instancia_item tii ,tb_item_equipamento_armadura tiea, tb_inventario inv
+WHERE inv.id_personagem = '${id_personagem}' and tii.id_inventario  = inv.id
+and tiea.id_equipamento = tii.id_item
+
+--Ver consumiveis do personagem
+
+SELECT tiea.nome, tiea.descricao, tiea.mult_defesa
+FROM  tb_instancia_item tii ,tb_item_equipamento_armadura tiea, tb_inventario inv
+WHERE inv.id_personagem = '${id_personagem}' and tii.id_inventario  = inv.id
+and tiea.id_equipamento = tii.id_item
+
+-- Ver Acessorios do personagem
+
+SELECT tiea.nome, tiea.descricao, tiea.mult_poder FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_acessorio tiea
+where inv.id_personagem = '${id_personagem}' and tiea.id_equipamento = item.id_item 
+and item.id_inventario = inv.id;

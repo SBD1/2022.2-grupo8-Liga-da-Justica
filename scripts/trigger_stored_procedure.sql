@@ -91,7 +91,7 @@ ON tb_personagem FOR EACH ROW
 
 create or replace function tg_pers_morte() returns trigger as $tg_pers_morte$
 begin 
-	if (new.QTD_PontosDeVida = 0) then 
+	if (new.QTD_PontosDeVida <= 0) then 
    	   update tb_inventario 
    	   set qtd_dinheiro = '0'
    	   where id_personagem = new.id;
