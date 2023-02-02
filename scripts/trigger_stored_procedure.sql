@@ -188,7 +188,7 @@ AFTER INSERT ON tb_batalha
 FOR EACH ROW
 EXECUTE FUNCTION iniciar_batalha();
 
-CREATE OR REPLACE FUNCTION Calcular_ataque(id_p int,arma_atual) RETURNS Int AS $$
+CREATE OR REPLACE FUNCTION Calcular_ataque(id_p int,arma_atual int) RETURNS Int AS $$
 
 DECLARE 
   arma_personagem int;
