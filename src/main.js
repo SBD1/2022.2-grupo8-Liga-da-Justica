@@ -83,10 +83,11 @@ const main = async () => {
     let res = 0;
     try {
       const nome = askAndReturn("Escreva o nome do seu personagem: ");
-      const sexo = askAndReturn("Escolha o sexo do seu personagem:\n0- Masculino\n1- Feminino\n");
-      const classe = askAndReturn("Escolha a classe do seu personagem:\n1- Velocista\n2- Magico\n3- Combatente\n4- Detetive\n5- Brutamonte\n");
-      const faccao = askAndReturn("Escolha a faccao do seu personagem:\n1- Heroi\n2- Vilao");
-      const raca = askAndReturn("Escolha a raca do seu personagem:\n1- Humano\n2- Homi Magi\n3- Amazonas\n4- Atlante\n5- Alien\n"); 
+      const sexo = askAndReturn("\nEscolha o sexo do seu personagem:\n0- Masculino\n1- Feminino\n");
+      const classe = askAndReturn("\nEscolha a classe do seu personagem:\n1- Velocista\n2- Magico\n3- Combatente\n4- Detetive\n5- Brutamonte\n");
+      const faccao = askAndReturn("\nEscolha a faccao do seu personagem:\n1- Heroi\n2- Vilao\n");
+      const raca = askAndReturn("\nEscolha a raca do seu personagem:\n1- Humano\n2- Homi Magi\n3- Amazonas\n4- Atlante\n5- Alien\n"); 
+      console.log('Seu personagem foi criado com sucesso!');
       await api.criarPersonagem(nome, sexo, classe, faccao, raca);
 
     } catch (error) {
