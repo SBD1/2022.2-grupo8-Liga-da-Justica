@@ -75,15 +75,19 @@ const main = async () => {
   let regiao = "";
   let aux = 1;
   let r = askAndReturn(
-    "1- Jogar\n2- Sair\n3- Criar e Popular Tabelas\n4- Matar personagem\n"
+    "1- Jogar\n2- Sair\n3- Criar e Popular Tabelas\n4- Criar personagem\n"
   );
 
   if (r == 4) {
+    let res = 0;
     try {
-      let res = await api.matarPersonagem(2);
-      if (res) {
-        console.log("Ele morreu mesmo");
-      }
+      const nome = askAndReturn("Escreva o nome do seu personagem: ");
+      const sexo = askAndReturn("Escolha o sexo do seu personagem:\n0- Masculino\n1- Feminino\n");
+      const classe = askAndReturn("Escolha a classe do seu personagem:\n1- Velocista\n2- Magico\n3- Combatente\n4- Detetive\n5- Brutamonte\n");
+      const faccao = askAndReturn("Escolha a faccao do seu personagem:\n1- Heroi\n2- Vilao");
+      const raca = askAndReturn("Escolha a raca do seu personagem:\n1- Humano\n2- Homi Magi\n3- Amazonas\n4- Atlante\n5- Alien\n"); 
+      await api.criarPersonagem(nome, sexo, classe, faccao, raca);
+
     } catch (error) {
       console.log(error);
     }

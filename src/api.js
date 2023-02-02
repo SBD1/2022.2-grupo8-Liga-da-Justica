@@ -142,11 +142,10 @@ class Api {
     return response[0];
   };
 
-  matarPersonagem = async (id) => {
-    console.log("entrei");
+  criarPersonagem = async (nome, sexo, idClasse, idFaccao, idRaca) => {
     let response = [];
     await this.db
-      .query(`update tb_personagem set qtd_pontosdevida = 0 where id= ${id}`)
+      .query(`select criarPersonagem('${nome}', '${sexo}', '${idClasse}', '${idFaccao}', '${idRaca}')`)
       .then((results) => {
         console.log(response);
         response = results.rows;
