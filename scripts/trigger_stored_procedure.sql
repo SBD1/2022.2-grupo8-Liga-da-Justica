@@ -20,15 +20,21 @@ CREATE OR REPLACE FUNCTION criarPersonagem(nome varchar(30), sexo int, idClasse 
 $$
 DECLARE
 idMentor int;
+idPosicao int;
 begin
 	select tb_npc_mentor.id into idMentor from tb_npc_mentor where id_classe = idClasse and id_faccao = idFaccao;
 
+  if (idFaccao ='1') then idPosicao = 26;
+    end if;
+  if (idFaccao ='2') then idPosicao = 51;
+    end if;
+
     insert into tb_personagem(experiencia, nivel, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeEstamina, MAX_PontosDeEstamina, QTD_Honra, QTD_Defesa, QTD_Ataque, QTD_Mortes, id_poder, id_Local_Atual, id_ajudante, id_mentor, id_classe, id_faccao, id_raca) 
-   values (0, 1, nome, 100, 100, sexo , 100, 100, 50, 0, 0, 0, 1 , 1, null, idMentor, idClasse , idFaccao , idRaca);
+   values (0, 1, nome, 100, 100, sexo , 100, 100, 50, 0, 0, 0, 1 , idPosicao, null, idMentor, idClasse , idFaccao , idRaca);
 
 END
 $$
-  LANGUAGE 'plpgsql';
+  LANGUAGE 'plpgsql';;
  
 
 -- Função para criar a tabela de poder ao criar um personagem 
