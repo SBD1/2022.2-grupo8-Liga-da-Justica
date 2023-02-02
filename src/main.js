@@ -69,8 +69,9 @@ function findPrevRegiao(regiaoAtual) {
 const main = async () => {
   const api = new Api();
   let player = new Player();
+  let result = {};
   let posicao = 0;
-  let auxPos = {};
+  let npc = {};
   let username = "";
   let regiao = "";
   let aux = 1;
@@ -138,16 +139,55 @@ const main = async () => {
     while (aux != 0) {
       let m = 0;
       try {
-        const result = await api.getLogin(username);
+        result = await api.getLogin(username);
         posicao = await api.getPosicao(result.id_local_atual);
+        npc = await api.checaPosicao(result.id_local_atual);
       } catch (error) {
+        console.log("Aqui:");
         console.log(error);
       }
+
+      mapa(posicao.posicao_x, posicao.posicao_y);
+
       console.log(
-        `Você está em '${posicao.nome} (${posicao.posicao_x}, ${posicao.posicao_y})'`
+        `Você está em '${posicao.nome} (${posicao.posicao_x}, ${posicao.posicao_y})'\n`
       );
-      
-      mapa(posicao.posicao_x,posicao.posicao_y);
+
+      switch (npc.tipo) {
+        case "Inimigo":
+          const ini = await api.checaInimigo(npc.idNpc);
+          console.log("\nVocê encontrou um inimigo!");
+          console.log(
+            `Dados do inimigo:\n 'nome: ${ini.nome} Força de ataque: ${ini.dano},EXP: ${ini.experiencia})'\n`
+          );
+          let i = askAndReturn(
+            " \nO que você irá fazer?\n 1- Lutar\n2- Fugir\n"
+          );
+          if (i == 1) {
+            console.log("Hora do duelo");
+            const batalha= await api.batalhar(result.id,npc.idNpc);
+            if(batalha.vencedor== "NPC"){
+              console.log("Você perdeu a batalha para:" + ini.nome )
+            }
+            if(batalha.vencedor== "Personagem"){
+              console.log("Você venceu:" + ini.nome )
+            }
+          }
+          if(i==2){
+            console.log("Você Fugiu!")
+            console.log(
+              `Você está em '${posicao.nome} (${posicao.posicao_x}, ${posicao.posicao_y})'\n`
+            );
+          }
+
+          break;
+        case "Mercador":
+          console.log("Você encontrou um mercador");
+          break;
+        case "Mentor":
+          console.log("Você encontrou um mentor");
+          break;
+      }
 
       if (posicao.posicao_x == 4 && posicao.posicao_y == 4) {
         m = askAndReturn(
@@ -183,7 +223,6 @@ const main = async () => {
             posicao.posicao_y,
             posicao.nome
           );
-          console.log(pos);
           await api.updatePosicao(pos.id, player.id);
         } catch (error) {
           console.log(error);
@@ -216,7 +255,11 @@ const main = async () => {
       }
       if (m == 5) {
         try {
-          let pos = await api.findIdPosicao(regiao.pos, regiao.pos, regiao.nome);
+          let pos = await api.findIdPosicao(
+            regiao.pos,
+            regiao.pos,
+            regiao.nome
+          );
           console.log(regiao.nome + ":" + regiao.pos + "--", pos);
           await api.updatePosicao(pos.id, player.id);
         } catch (error) {
@@ -226,4 +269,5 @@ const main = async () => {
     }
   }
 };
+
 main();

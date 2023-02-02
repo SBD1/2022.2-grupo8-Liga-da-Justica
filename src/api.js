@@ -85,7 +85,8 @@ class Api {
 
   checaPosicao = async (id) => {
     let response = [];
-    let inimigo,mentor, mercador;
+    let inimigo, mentor, mercador;
+    let obj = {};
     await this.db
       .query(`select * from tb_npc where id_regiao ='${id}'`)
       .then((results) => {
@@ -96,19 +97,25 @@ class Api {
       inimigo = await this.checaInimigo(response[0].id);
       mentor = await this.checaMentor(response[0].id);
       mercador = await this.checaMercador(response[0].id);
-      
-      if(inimigo){
-        return("Inimigo")
-      }
-      if(mentor){
-        return("Mercador")
-      }
-      if(mercador){
-        return("Mentor")
-      }
 
+      if (inimigo) {
+        obj.tipo = "Inimigo";
+        obj.idNpc = inimigo.id_npc;
+        return obj;
+      }
+      if (mentor) {
+        obj.tipo = "Mentor";
+        obj.idNpc = mentor.id_npc;
+        return obj;
+      }
+      if (mercador) {
+        obj.tipo = "Mercador";
+        obj.idNpc = mercador.id_npc;
+        return obj;
+      }
     } else {
-      console.log("Não encontrei");
+      obj.tipo = "Nda";
+      return obj;
     }
   };
 
@@ -116,6 +123,32 @@ class Api {
     let response = [];
     await this.db
       .query(`select * from tb_npc_inimigo where id_npc ='${id}'`)
+      .then((results) => {
+        response = results.rows;
+      });
+    return response[0];
+  };
+
+  batalhar = async (id_personagem, id_inimigo) => {
+    let response = [];
+    
+    const ini = await this.checaInimigo(id_inimigo);
+    await this.db
+      .query(
+        `insert into tb_batalha(id_personagem, id_npc_inimigo) values('${id_personagem}','${ini.id}'); `
+      );
+
+    response = await this.findBatalha(id_personagem, ini.id);
+   
+    return response;
+  };
+
+  findBatalha = async (id_personagem, id_inimigo) => {
+    let response = [];
+    await this.db
+      .query(
+        `select * from tb_batalha where id_personagem ='${id_personagem}' and id_npc_inimigo ='${id_inimigo}'`
+      )
       .then((results) => {
         response = results.rows;
       });
