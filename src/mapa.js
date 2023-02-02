@@ -12,7 +12,7 @@ export const mapa = (posX,posY) => {
     
     ];
 
-    mapaX[posX][posY] = "( YOU )";
+    mapaX[posY][posX] = "( YOU )";
     console.log(mapaX);
 
 }

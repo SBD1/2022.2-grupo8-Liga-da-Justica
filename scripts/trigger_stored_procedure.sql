@@ -91,7 +91,7 @@ ON tb_personagem FOR EACH ROW
 
 create or replace function tg_pers_morte() returns trigger as $tg_pers_morte$
 begin 
-	if (new.QTD_PontosDeVida = 0) then 
+	if (new.QTD_PontosDeVida <= 0) then 
    	   update tb_inventario 
    	   set qtd_dinheiro = '0'
    	   where id_personagem = new.id;
@@ -188,7 +188,9 @@ AFTER INSERT ON tb_batalha
 FOR EACH ROW
 EXECUTE FUNCTION iniciar_batalha();
 
-CREATE OR REPLACE FUNCTION Calcular_ataque(id_p int,arma_atual) RETURNS Int AS $$
+
+-- Função de calcular ataque do personagem
+CREATE OR REPLACE FUNCTION Calcular_ataque(id_p int,arma_atual int) RETURNS Int AS $$
 
 DECLARE 
   arma_personagem int;
@@ -212,7 +214,7 @@ BEGIN
       where inv.id_personagem = id_p and tiea.id_equipamento = id_item
       and item.id_inventario = inv.id and tiea.id_equipamento = arma_atual into arma_personagem;
     else
-      raise notice 'Não possue arma indicada'
+      raise notice 'Não possue arma indicada';
       return Mult_atq;
     END IF;
 
@@ -223,9 +225,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Chamada exemplo da função calcular_ataque
-SELECT Calcular_ataque(1,1);
-
+-- Função para consumir item
 CREATE OR REPLACE FUNCTION consumir_item(id_p int, id_consumivel int) returns void as $$
 
 DECLARE
@@ -267,6 +267,3 @@ BEGIN
  
 END;
 $$ LANGUAGE plpgsql;
-
---Chamada exemplo da função consumir_item
-select consumir_item(1,18);
