@@ -40,5 +40,5 @@ $ npm install
 $ docker-compose up
 
 # Execute o projeto em outro terminal
-$ node src/api.js
+$ node src/main.js
 ```
