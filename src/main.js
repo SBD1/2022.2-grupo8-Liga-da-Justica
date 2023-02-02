@@ -102,6 +102,7 @@ const main = async () => {
     }
     try {
       let res = await api.populateTables();
+      let trg = await api.createTriggers();
       if (res) {
         console.log("Dados inseridos com sucesso");
       }

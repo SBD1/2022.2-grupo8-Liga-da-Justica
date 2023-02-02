@@ -5,6 +5,8 @@ import { readFileSync } from "fs";
 const { Client } = pg;
 var sqlTables = readFileSync("scripts/ddl.sql").toString();
 var sqlData = readFileSync("scripts/dml.sql").toString();
+var sqlTrg = readFileSync("scripts/trigger_stored_procedure.sql").toString();
+
 
 class Api {
   db = new Client({
@@ -32,6 +34,14 @@ class Api {
   createTables = async () => {
     let response = false;
     await this.db.query(sqlTables).then((results) => {
+      response = true;
+    });
+    return response;
+  };
+
+  createTriggers = async () => {
+    let response = false;
+    await this.db.query(sqlTrg).then((results) => {
       response = true;
     });
     return response;
