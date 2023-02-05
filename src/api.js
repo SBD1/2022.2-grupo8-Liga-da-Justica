@@ -93,6 +93,73 @@ class Api {
     return response[0];
   };
 
+  getConsumivel = async (id_personagem) => {
+    let response = [];
+    await this.db
+      .query(
+        `select tbc.nome, tbc.descricao  
+        FROM  tb_instancia_item tii ,tb_item_consumivel tbc, tb_inventario inv
+        WHERE inv.id_personagem = ${id_personagem} and tii.id_inventario  = inv.id
+        and tbc.id_item = tii.id_item 
+        `
+      )
+      .then((results) => {
+        response = results.rows;
+    });
+
+    return response;
+  };
+
+  getArma = async (id_personagem) => {
+    let response = [];
+    await this.db
+      .query(
+        `SELECT tiea.nome, tiea.mult_ataque FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_arma tiea
+        WHERE inv.id_personagem = '${id_personagem}' AND tiea.id_equipamento = item.id_item 
+        AND item.id_inventario = inv.id;
+        `
+      )
+      .then((results) => {
+        response = results.rows;
+    });
+
+    return response;
+  };
+
+  getArmadura = async (id_personagem) => {
+    let response = [];
+    await this.db
+      .query(
+        `SELECT tiea.nome, tiea.descricao, tiea.mult_defesa
+        FROM  tb_instancia_item tii ,tb_item_equipamento_armadura tiea, tb_inventario inv
+        WHERE inv.id_personagem = '${id_personagem}' and tii.id_inventario  = inv.id
+        and tiea.id_equipamento = tii.id_item
+        `
+      )
+      .then((results) => {
+        response = results.rows;
+    });
+
+    return response;
+  };
+
+  getAcessorio = async (id_personagem) => {
+    let response = [];
+    await this.db
+      .query(
+        `SELECT tiea.nome, tiea.descricao, tiea.mult_poder FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_acessorio tiea
+        where inv.id_personagem = '${id_personagem}' and tiea.id_equipamento = item.id_item 
+        and item.id_inventario = inv.id 
+        `
+      )
+      .then((results) => {
+        response = results.rows;
+    });
+
+    return response;
+  };
+
+
   checaPosicao = async (id) => {
     let response = [];
     let inimigo, mentor, mercador;

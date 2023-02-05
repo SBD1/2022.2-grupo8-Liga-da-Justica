@@ -68,13 +68,13 @@ and tiea.id_equipamento = tii.id_item
 
 --Ver consumiveis do personagem
 
-SELECT tiea.nome, tiea.descricao, tiea.mult_defesa
-FROM  tb_instancia_item tii ,tb_item_equipamento_armadura tiea, tb_inventario inv
-WHERE inv.id_personagem = '${id_personagem}' and tii.id_inventario  = inv.id
-and tiea.id_equipamento = tii.id_item
+select tbc.nome, tbc.descricao  
+FROM  tb_instancia_item tii ,tb_item_consumivel tbc, tb_inventario inv
+WHERE inv.id_personagem = ${id_personagem} and tii.id_inventario  = inv.id
+and tbc.id_item = tii.id_item 
 
 -- Ver Acessorios do personagem
 
 SELECT tiea.nome, tiea.descricao, tiea.mult_poder FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_acessorio tiea
 where inv.id_personagem = '${id_personagem}' and tiea.id_equipamento = item.id_item 
-and item.id_inventario = inv.id;
+and item.id_inventario = inv.id

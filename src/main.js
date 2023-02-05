@@ -1,6 +1,7 @@
 import Api from "./api.js";
 import { question } from "readline-sync";
 import { mapa } from "./mapa.js";
+import { inventario } from "./Inventario.js";
 
 class Player {
   constructor(id, nome, id_localAtual, pos_x, pos_y) {
@@ -170,6 +171,12 @@ const main = async () => {
             " \nO que você irá fazer?\n 1- Lutar\n2- Fugir\n"
           );
           if (i == 1) {
+
+            
+            i = askAndReturn("Visualizar Inventário antes da batalha (S/N): ");
+
+            if(i.toLowerCase() == 's') await inventario(player.id);
+
             console.log("Hora do duelo");
             const batalha= await api.batalhar(result.id,npc.idNpc);
             if(batalha.vencedor== "NPC"){
