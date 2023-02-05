@@ -97,7 +97,7 @@ class Api {
     let response = [];
     await this.db
       .query(
-        `select tbc.nome, tbc.descricao  
+        `select tbc.nome, tbc.descricao, tbc.id_item  
         FROM  tb_instancia_item tii ,tb_item_consumivel tbc, tb_inventario inv
         WHERE inv.id_personagem = ${id_personagem} and tii.id_inventario  = inv.id
         and tbc.id_item = tii.id_item 
@@ -157,6 +157,16 @@ class Api {
     });
 
     return response;
+  };
+
+  ConsumirItem = async (id_personagem,id_item) => {
+
+    await this.db
+      .query(
+        `SELECT consumir_item('${id_personagem}','${id_item}')
+        `
+      )
+
   };
 
 

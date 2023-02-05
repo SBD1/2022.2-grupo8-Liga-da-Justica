@@ -173,7 +173,7 @@ const main = async () => {
           if (i == 1) {
 
             
-            i = askAndReturn("Visualizar Inventário antes da batalha (S/N): ");
+            i = askAndReturn("Visualizar Inventario antes da batalha (S/N): ");
 
             if(i.toLowerCase() == 's') await inventario(player.id);
 

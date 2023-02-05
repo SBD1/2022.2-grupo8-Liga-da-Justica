@@ -5,7 +5,17 @@ function askAndReturn(texto) {
     return question(texto);
 }
 
+function separador(){
+    console.log("=====================================================================================================")
+}
+
+
 const api = new Api();
+
+/* 
+    Parametro:
+    id = Identificador do personagem atual
+*/
 
 export const inventario = async (id) => {
 
@@ -22,9 +32,22 @@ export const inventario = async (id) => {
             
             if(verifyLength(response)) break;
 
+            separador();
+
             for(const cons of response){
-                console.log(`Nome: ${cons.nome} | Descrição: ${cons.descricao} `)
+                console.log(`id: ${cons.id_item} | Nome: ${cons.nome} | Descrição: ${cons.descricao} `)
             }
+
+            res = askAndReturn("====== Deseja consumir algum item (S/N): ========");
+
+            if(res.toLowerCase() == 's'){
+
+                res = askAndReturn("Escolha o numero indicador do consumivel: ");
+                const id_item = Number.parseInt(res);
+                await api.ConsumirItem(id,id_item)
+            }
+
+            separador();
 
             break;
         case '2':
