@@ -6,6 +6,7 @@
 |25/11/2022|  1.0   |  [Matheus Soares](https://github.com/MtsSrs), [Vitor Manoel](https://github.com/Vitormanoel17) , [João Victor](https://github.com/CorreiaJV)  | Criação do documento MER | 
 |27/11/2022|  1.1   | [João Victor](https://github.com/CorreiaJV) | Adição introdução do documento | 
 |27/11/2022|  1.2   | [Matheus Soares](https://github.com/MtsSrs), [Matheus Perillo](https://github.com/MatheusPerillo) | Adição dos novos atributos |
+|06/02/2023|  1.3   | [Matheus Soares](https://github.com/MtsSrs) | Revisão final e adição de atributos |
 
 
 # Modelo Entidade-Relacionamento
@@ -46,40 +47,60 @@ O Modelo Entidade Relacionamento para bancos de dados é um modelo que descreve 
     - **Consumível**
 - **Poderes**
 - **Missão**
+- **Batalha**
 
 ## 2. Atributos
-- **Personagem**: <ins>ID_Personagem</ins>, experiência, nível, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeStamina, MAX_PontosDeStamina, QTD_Honra, QTD_Defesa, QTD_Ataque, poderes, LocalAtual;
-- **Raça**: <ins>ID_Raça</ins>, Nome, IND_Velocidade, IND_Furtividade, IND_Magia, IND_Força, IND_Carisma, IND_Percepção, personagem;
+- **Personagem**: <ins>ID_Personagem</ins>, experiência, nível, nome, QTD_PontosDeVida, MAX_PontoDeVida, sexo, QTD_PontosDeStamina, MAX_PontosDeStamina, QTD_Honra, QTD_Defesa, QTD_Ataque,QTD_Mortes, id_Local_Atual, id_mentor, id_classe, id_faccao, id_raca, id_ajudante, poderes, arma_atual, armadura_atual, acessorio_atual, LocalAtual;
+- **Raça**: <ins>ID_Raça</ins>, Nome;
     - **Humano**
+    <ins>ID_Raça</ins>, nome, IND_carisma, IND_percepcao, IND_furtividade;
     - **Homi-Magi**
+    <ins>ID_Raça</ins>, nome, IND_magia, IND_percepcao, IND_velocidade;
     - **Atlante**
+    <ins>ID_Raça</ins>, nome, IND_forca, IND_furtividade, IND_velocidade
     - **Amazonas** 
+    <ins>ID_Raça</ins>, nome, IND_forca, IND_carisma, IND_velocidade;
     - **Alien**
-- **Classe**: <ins>ID_Classe</ins>, personagem;
-    - **Velocista**: IND_Velocidade, IND_Percepção;
-    - **Mágico**: IND_Magia, IND_Carisma;
-    - **Combatente**: IND_Força, IND_Velocidade;
-    - **Detetive**: IND_Furtividade, IND_Carisma, IND_Percepção;
-    - **Brutamonte**: IND_Força, IND_Velocidade;
-- **Facção**: <ins>ID_Facção</ins>,Nome, MULT_Honra, personagem;
-- **NPC**: <ins>ID_NPC</ins>, Nome, personagem;
-    - **Mercador**: Tipo;
-    - **Inimigo**: Vida, Dano;
-    - **Mentor**: MULT_Poder;
-    - **Ajudante**: Vida, Dano;
+    <ins>ID_Raça</ins>, nome, IND_forca, IND_percepcao, IND_velocidade;
+- **Classe**: 
+    <ins>ID_Classe</ins>, nome;
+    - **Velocista**:
+    <ins>ID_Classe</ins>, nome,IND_Percepcao, IND_Velocidade;
+    - **Mágico**: 
+    <ins>ID_Classe</ins>, nome, IND_Magia, IND_Carisma;
+    - **Combatente**:
+    <ins>ID_Classe</ins>, nome, IND_Forca, IND_Velocidade;
+    - **Detetive**:
+    <ins>ID_Classe</ins>, nome, IND_Furtividade, IND_Carisma, IND_percepcao;
+    - **Brutamonte**:
+    <ins>ID_Classe</ins>, nome,IND_Forca, IND_Velocidade;
+- **Facção**: <ins>ID_Facção</ins>,Nome;
+    - **Herói**:
+    <ins>ID_Facção</ins>,Nome, MULT_honra;
+    - **Vilão**
+    <ins>ID_Facção</ins>,Nome, MULT_honra;
+- **NPC**: <ins>ID_NPC</ins>, Nome, id_regiao;
+    - **Mercador**:
+    <ins>ID_NPC</ins>, Nome, id_regiao, tipo, id_instancia_item, req_honra_min, req_honra_max, desconto;
+    - **Inimigo**:
+    <ins>ID_NPC</ins>, Nome, id_regiao, vida, dano, experiencia, tempo TIMESTAMP, id_faccao;
+    - **Mentor**:
+    <ins>ID_NPC</ins>, Nome, id_regiao, id_classe, id_faccao, MULT_poder;
+    - **Ajudante**:
+    <ins>ID_NPC</ins>, Nome, id_regiao, vida, dano;
 - **Região**: <ins>ID_Região</ins>, Nome, posição_x, posição_y, LocalMapa;
 - **Mapa**: <ins>ID_Mapa</ins>, Nome;
-- **Inventário**: <ins>ID_Inventário</ins>, Capacidade, QTD_Atual, QTD_Dinheiro, dono;
-- **Instância de Item**: <ins>ID_InstaItem</ins>, item_ref
+- **Inventário**: <ins>ID_Inventário</ins>, Capacidade, QTD_Atual, QTD_Dinheiro, id_personagem;
+- **Instância de Item**: <ins>ID_InstaItem</ins>, id_item_ref, id_inventario;
 - **Item**: <ins>ID_Item</ins>, Nome, Valor, Descrição, Min_Level;
-    - **Equipamento**: tipo;
-        - **Arma**: MULT_Ataque;
-        - **Armadura**: MULT_Defesa;
-        - **Acessório**: MULT_Poder;
-    - **Consumível**: MULT_QTD_PontosDeVida, MULT_QTD_PontosDeStamina, MULT_Poder, MULT_Ataque.
+    - **Equipamento**:<ins>ID_Item</ins>, id_item, nome, descricao, valor, min_level, tipo;
+        - **Arma**: <ins>id_equipamento</ins>, nome, descricao, valor, min_level, tipo, MULT_ataque;
+        - **Armadura**: <ins>id_equipamento</ins>, nome, descricao, valor, min_level, tipo, MULT_defesa;
+        - **Acessório**: <ins>id_equipamento</ins>, nome varchar(50) not null, descricao, valor, min_level, tipo, MULT_Poder;
+    - **Consumível**: <ins>ID_Item</ins>, nome, descricao, valor, min_level, MULT_ataque, MULT_poder, MULT_qtd_PontosDeVida, MULT_qtd_PonstosDeStamina;
 - **Poderes**: <ins>ID_Poderes</ins>, Velocidade, Furtividade, Magia, Força, Carisma, Percepção.
-- **Missão**: <ins>ID_Missão</ins>, Nível_min, REQ_Facção, REQ_Honra, personagem;
-
+- **Missão**: <ins>ID_Missão</ins>, Nível_min, REQ_Facção, REQ_Honra, personagem, id_instancia_item;
+- **Batalha**: <ins>ID_Batalha</ins>, id_npc_inimigo, id_personagem, vencedor;
 ## 3. Relacionamentos
 
 **Personagem possui Classe**
