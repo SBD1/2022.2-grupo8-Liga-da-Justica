@@ -273,3 +273,52 @@ BEGIN
  
 END;
 $$ LANGUAGE plpgsql;
+
+-- Trigger para atualizar o tempo de outra trigger
+
+CREATE OR REPLACE FUNCTION tg_atualizaTempo_inimigo()
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW.tempo = NOW(); 
+   RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+CREATE TRIGGER tg_atualizaTempo_inimigo BEFORE UPDATE
+ON tb_npc_inimigo  FOR EACH ROW EXECUTE PROCEDURE 
+tg_atualizaTempo_inimigo();
+
+
+-- Trigger respawn de Inimigo
+
+create or replace function tg_inimigo_morte() returns trigger as $$
+declare
+ tempoAtual timestamp;
+ id_regiaoAntiga int;
+begin 
+	tempoAtual = clock_timestamp();
+	select id_regiao from tb_npc where id = new.id_npc into id_regiaoAntiga;	
+
+	if(new.vida = 0) then	
+		update tb_npc 
+		set id_regiao = '101'
+		where id = new.id_npc;
+	
+		raise notice 'Dormi';
+		PERFORM pg_sleep(15);
+		raise notice 'voltou a vida!!';
+	
+	end if;
+	
+		new.vida := 100;	
+		update tb_npc 
+		set id_regiao = id_regiaoAntiga
+		where id = new.id_npc;
+
+	return new;
+end;
+$$ language plpgsql;
+
+create trigger tg_inimigo_morte
+before update on tb_npc_inimigo
+for each row execute procedure tg_inimigo_morte();

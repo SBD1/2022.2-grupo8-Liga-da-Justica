@@ -274,9 +274,11 @@ create table tb_npc_inimigo(
 	vida int not null,
 	dano int not null,
 	experiencia int not null,
+	tempo TIMESTAMP default NOW() not null,
 	constraint  fk_id_faccao foreign key(id_faccao)  references tb_faccao (id),
 	constraint  fk_npc foreign key(id_npc)  references tb_npc (id)
 );
+
 
 -- Personagem
 create table tb_personagem(
