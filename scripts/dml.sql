@@ -110,7 +110,7 @@ insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Metróp
 insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Metrópoles', '4', '2', '2');
 insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Metrópoles', '4', '3', '2');
 insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Metrópoles', '4', '4', '2'); 
-
+insert into tb_regiao(nome, posicao_x, posicao_y, id_localmapa) values ('Death zone', '555', '555', '1'); 
 -- Item
 insert into tb_item(nome, descricao, valor, min_level) values ('Espada','Arma branca constituída por uma longa lâmina de aço', 40, 3);
 insert into tb_item(nome, descricao, valor, min_level) values ('Pistola','Arma de fogo portátil', 60, 2);
