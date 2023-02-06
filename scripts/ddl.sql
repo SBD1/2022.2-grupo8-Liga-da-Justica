@@ -356,9 +356,13 @@ create table tb_npc_mercador(
 	nome varchar(30) not null,
 	tipo varchar(30),
 	id_instancia_item int not null,
+	req_honra_min int not null,
+	req_honra_max int not null,
+	desconto int not null,
 	constraint  fk_npc foreign key(id_npc)  references tb_npc (id),
 	constraint fk_InstaItem foreign key(id_instancia_item)  references tb_instancia_item (id)
 );
+
 
 -- batalha
 create table tb_batalha(

@@ -318,7 +318,7 @@ insert into tb_missao(nivel_min, REQ_Faccao, REQ_Honra, id_personagem, id_instan
 insert into tb_missao(nivel_min, REQ_Faccao, REQ_Honra, id_personagem, id_instancia_item) values (10, true, true, 2, 3);
 
 --NPC mercador
-insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(16, 'Vendedor Misterioso', 'Contrabando', 1);
-insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(17, 'Tralhas velhas', 'Itens roubados', 3);
-insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(18, 'Vendedor Oficial' , 'Itens legalizados', 11);
-insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item) values(19, 'O mercador', 'Itens de herois', 8)
+insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item,req_honra_min,req_honra_max,desconto) values(16, 'Vendedor Misterioso', 'Contrabando', 1,0, 48, 7);
+insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item,req_honra_min,req_honra_max,desconto) values(17, 'Tralhas velhas', 'Itens roubados', 3, 20, 90,3);
+insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item,req_honra_min,req_honra_max,desconto) values(18, 'Vendedor Oficial' , 'Itens legalizados', 11, 0, 100,0);
+insert into tb_npc_mercador(id_npc, nome, tipo, id_instancia_item,req_honra_min,req_honra_max,desconto) values(19, 'O mercador', 'Itens de herois', 8, 50, 100,5)
