@@ -150,10 +150,12 @@ RETURNS TRIGGER AS $$
   declare faccao_personagem int;
   declare faccao_inimigo int;
   declare honra_personagem  int;
+  declare dinheiro_personagem int; 
 
  
  begin
   select qtd_pontosdevida into vida_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
+  select qtd_dinheiro into dinheiro_personagem from tb_inventario  where tb_inventario.id_personagem = new.id_personagem;
   select id_faccao into faccao_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
   select qtd_honra into honra_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
   select experiencia into xp_personagem from tb_personagem where tb_personagem.id = new.id_personagem;
@@ -170,6 +172,7 @@ RETURNS TRIGGER AS $$
     RAISE NOTICE 'Personagem venceu a batalha';
    	update tb_batalha set vencedor = 'Personagem' where id = new.id;
    	update tb_personagem set experiencia = xp_personagem + xp_inimigo where id = new.id_personagem;
+   	update tb_inventario  set qtd_dinheiro  = dinheiro_personagem + 10  where id = new.id_personagem;
    case 
    		when (faccao_personagem = '1' and faccao_inimigo ='2') then update tb_personagem set qtd_honra = honra_personagem + 5 where id = new.id_personagem;
    		when (faccao_personagem = '1' and faccao_inimigo ='1') then update tb_personagem set qtd_honra = honra_personagem - 5 where id = new.id_personagem;
@@ -180,6 +183,7 @@ RETURNS TRIGGER AS $$
   else
   	vida_personagem := vida_personagem - (dano_inimigo - qtd_ataque_personagem);
     UPDATE tb_personagem SET qtd_pontosdevida  = vida_personagem WHERE id = NEW.id_personagem;
+   	update tb_inventario  set qtd_dinheiro  = dinheiro_personagem - 10  where id_personagem  = new.id_personagem;
     RAISE NOTICE 'NPC inimigo venceu a batalha';
    	update tb_batalha set vencedor = 'NPC' where id = new.id;
   END IF;
