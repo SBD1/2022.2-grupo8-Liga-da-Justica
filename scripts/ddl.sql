@@ -302,14 +302,21 @@ create table tb_personagem(
 	id_classe int not null,
 	id_faccao int not null,
 	id_raca int not null,
+	arma_atual int,
+	armadura_atual int,
+	acessorio_atual int,
 	constraint fk_poderes foreign key(id_poder) references tb_poderes (id),
 	constraint fk_ajudante foreign key(id_ajudante) references tb_npc_ajudante (id),
 	constraint fk_mentor foreign key(id_mentor) references tb_npc_mentor (id),
 	constraint fk_Local_Atual foreign key(id_Local_Atual) references tb_regiao (id),
 	constraint fk_classe foreign key(id_classe) references tb_classe (id),
 	constraint fk_faccao foreign key(id_faccao) references tb_faccao (id),
-	constraint fk_raca foreign key(id_raca) references tb_raca (id)
+	constraint fk_raca foreign key(id_raca) references tb_raca (id),
+	constraint fk_arma foreign key(arma_atual) references tb_item (id),
+	constraint fk_armadura foreign key(armadura_atual) references tb_item (id),
+	constraint fk_acessorio foreign key(acessorio_atual) references tb_item (id)
 );
+
 -- Inventario
 create table tb_inventario(
 	id serial not null, 

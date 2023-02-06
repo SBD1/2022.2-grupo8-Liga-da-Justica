@@ -6,7 +6,7 @@ function askAndReturn(texto) {
 }
 
 function separador(){
-    console.log("=====================================================================================================")
+    console.log("=====================================================================================================\n")
 }
 
 
@@ -23,7 +23,10 @@ export const inventario = async (id) => {
     console.log(`====== Inventario ${id} ==========`)
     console.log("1 - Consumivel")
     console.log("2 - Equipamento")
-    var res = askAndReturn("Selecione: ");
+
+    separador()
+
+    var res = askAndReturn("Selecione: ")
 
     switch (res) {
         case '1':
@@ -52,6 +55,9 @@ export const inventario = async (id) => {
             break;
         case '2':
             
+            separador();
+
+            
             console.log("1 - Armadura")
             console.log("2 - Arma")
             console.log("3 - Acessorio")
@@ -67,9 +73,18 @@ export const inventario = async (id) => {
                         //console.log(armadura)
 
                         for(const cons of armadura){
-                            console.log(`Nome: ${cons.nome} | mult_defesa: ${cons.mult_defesa} | descricao: ${cons.descricao}`)
+                            console.log(`Id: ${cons.id_equipamento} | Nome: ${cons.nome} | mult_defesa: ${cons.mult_defesa} | descricao: ${cons.descricao}`)
                         }
 
+                        res = askAndReturn("====== Deseja selecionar alguma armadura (S/N): ========\n");
+
+                        if(res.toLowerCase() == 's'){
+            
+                            res = askAndReturn("Escolha o numero indicador da armadura: ");
+                            const id_item = Number.parseInt(res);
+                            await api.setArmadura(id,id_item)
+                        }
+            
                         break;
                     case '2':
 
@@ -78,8 +93,18 @@ export const inventario = async (id) => {
                         if(verifyLength(arma)) break;
 
                         for(const cons of arma){
-                            console.log(`Nome: ${cons.nome} | Mult_Ataque: ${cons.mult_ataque}`)
+                            console.log(`Id: ${cons.id_equipamento} | Nome: ${cons.nome} | Mult_Ataque: ${cons.mult_ataque}`)
                         }
+                        
+                        res = askAndReturn("====== Deseja selecionar alguma arma (S/N): ========\n");
+
+                        if(res.toLowerCase() == 's'){
+            
+                            res = askAndReturn("Escolha o numero indicador da arma: ");
+                            const id_item = Number.parseInt(res);
+                            await api.setArma(id,id_item)
+                        }
+
                         break;
                     case '3':
 
@@ -87,7 +112,16 @@ export const inventario = async (id) => {
                         if(verifyLength(acessorio)) break;
 
                         for(const cons of acessorio){
-                            console.log(`Nome: ${cons.nome} | Mult_poder: ${cons.mult_poder} | descricao ${cons.descricao}`)
+                            console.log(`Id: ${cons.id_equipamento} | Nome: ${cons.nome} | Mult_poder: ${cons.mult_poder} | descricao ${cons.descricao}`)
+                        }
+
+                        res = askAndReturn("====== Deseja selecionar alguma acessorio (S/N): ========\n");
+
+                        if(res.toLowerCase() == 's'){
+            
+                            res = askAndReturn("Escolha o numero indicador da acessorio: ");
+                            const id_item = Number.parseInt(res);
+                            await api.setAcessorio(id,id_item)
                         }
 
                         break;
@@ -103,6 +137,7 @@ export const inventario = async (id) => {
             console.log("Algum erro ocorreu, tente novamente");
             break;
     }
+    separador();
 
     console.log(" ");
 

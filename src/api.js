@@ -110,11 +110,22 @@ class Api {
     return response;
   };
 
+  setArma = async (id_personagem,id_arma) => {
+    console.log("NO banco")
+    await this.db
+    .query(
+      `SELECT selecionar_arma('${id_personagem}','${id_arma}')`
+    )
+
+  };
+
+
   getArma = async (id_personagem) => {
     let response = [];
     await this.db
       .query(
-        `SELECT tiea.nome, tiea.mult_ataque FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_arma tiea
+        `SELECT tiea.nome, tiea.mult_ataque, tiea.id_equipamento 
+        FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_arma tiea
         WHERE inv.id_personagem = '${id_personagem}' AND tiea.id_equipamento = item.id_item 
         AND item.id_inventario = inv.id;
         `
@@ -126,11 +137,21 @@ class Api {
     return response;
   };
 
+  setArmadura = async (id_personagem,id_armadura) => {
+
+    await this.db
+      .query(
+        `SELECT selecionar_arma('${id_personagem}','${id_armadura}') 
+        `
+      )
+    
+  };
+
   getArmadura = async (id_personagem) => {
     let response = [];
     await this.db
       .query(
-        `SELECT tiea.nome, tiea.descricao, tiea.mult_defesa
+        `SELECT tiea.nome, tiea.descricao, tiea.mult_defesa, tiea.id_equipamento
         FROM  tb_instancia_item tii ,tb_item_equipamento_armadura tiea, tb_inventario inv
         WHERE inv.id_personagem = '${id_personagem}' and tii.id_inventario  = inv.id
         and tiea.id_equipamento = tii.id_item
@@ -143,11 +164,21 @@ class Api {
     return response;
   };
 
+  setAcessorio = async (id_personagem,id_acessorio) => {
+  
+    await this.db
+    .query(
+      `SELECT selecionar_arma('${id_personagem}','${id_acessorio}') 
+      `
+    )
+  };
+
   getAcessorio = async (id_personagem) => {
     let response = [];
     await this.db
       .query(
-        `SELECT tiea.nome, tiea.descricao, tiea.mult_poder FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_acessorio tiea
+        `SELECT tiea.nome, tiea.descricao, tiea.mult_poder, tiea.id_equipamento
+        FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_acessorio tiea
         where inv.id_personagem = '${id_personagem}' and tiea.id_equipamento = item.id_item 
         and item.id_inventario = inv.id 
         `

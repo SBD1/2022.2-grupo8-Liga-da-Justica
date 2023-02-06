@@ -322,3 +322,68 @@ $$ language plpgsql;
 create trigger tg_inimigo_morte
 before update on tb_npc_inimigo
 for each row execute procedure tg_inimigo_morte();
+
+
+-- Function para verificar se o jogador possui a arma que deseja selecionar
+CREATE OR REPLACE FUNCTION selecionar_arma(id_p int, id_arma int) returns void as $$
+
+DECLARE
+ rowWeapons int;
+BEGIN
+	
+	
+  	select  count(*) FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_arma tiea
+    where inv.id_personagem = id_p  and tiea.id_equipamento = item.id_item 
+    and item.id_inventario = inv.id and tiea.id_equipamento = id_arma into rowWeapons;
+	
+
+    IF rowWeapons = 1 THEN
+    	UPDATE tb_personagem SET arma_atual = id_arma WHERE id = id_p;
+  	else
+      raise exception 'não possue arma indicada';      
+    END IF;
+   
+END;
+$$ LANGUAGE plpgsql;
+
+-- Function para verificar se o jogador possui a armadura que deseja selecionar
+CREATE OR REPLACE FUNCTION selecionar_armadura(id_p int, id_armadura int) returns void as $$
+
+DECLARE
+ rowWeapons int;
+BEGIN
+	
+	
+  	select  count(*) FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_armadura tiea
+    where inv.id_personagem = id_p  and tiea.id_equipamento = item.id_item 
+    and item.id_inventario = inv.id and tiea.id_equipamento = id_armadura into rowWeapons;
+	
+
+    IF rowWeapons = 1 THEN
+    	UPDATE tb_personagem SET armadura_atual = id_armadura WHERE id = id_p;
+  	else
+      raise exception 'não possue armadura indicada';      
+    END IF;
+   
+END;
+$$ LANGUAGE plpgsql;
+
+-- Function para verificar se o jogador possui o acessorio que deseja selecionar
+CREATE OR REPLACE FUNCTION selecionar_acessorio(id_p int, id_acessorio int) returns void as $$
+
+DECLARE
+ rowWeapons int;
+BEGIN
+	
+  	select  count(*) FROM tb_inventario inv,tb_instancia_item item,tb_item_equipamento_acessorio tiea
+    where inv.id_personagem = id_p  and tiea.id_equipamento = item.id_item 
+    and item.id_inventario = inv.id and tiea.id_equipamento = id_acessorio into rowWeapons;
+	
+    IF rowWeapons = 1 THEN
+    	UPDATE tb_personagem SET acessorio_atual = id_acessorio WHERE id = id_p;
+  	else
+      raise exception 'não possue acessorio indicado';      
+    END IF;
+   
+END;
+$$ LANGUAGE plpgsql;
