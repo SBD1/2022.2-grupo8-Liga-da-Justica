@@ -317,17 +317,17 @@ const main = async () => {
 
       if (posicao.posicao_x == 4 && posicao.posicao_y == 4) {
         m = askAndReturn(
-          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Ir para proxima regiao\n"
+          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Ver inventário\n7- Ir para proxima regiao\n"
         );
         regiao = findProxRegiao(posicao.nome);
       } else if (posicao.posicao_x == 0 && posicao.posicao_y == 0) {
         m = askAndReturn(
-          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Voltar para a regiao anterior\n"
+          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Ver inventário\n7- Voltar para a regiao anterior\n"
         );
         regiao = findPrevRegiao(posicao.nome);
       } else {
         m = askAndReturn(
-          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n"
+          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Ver inventario"
         );
       }
       if (m == 1) {
@@ -387,6 +387,10 @@ const main = async () => {
         await sleep(3);
       }
       if (m == 6) {
+        await inventario(player.id)
+        
+      }
+      if (m == 7) {
         try {
           let pos = await api.findIdPosicao(
             regiao.pos,
