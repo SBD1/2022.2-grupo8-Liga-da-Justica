@@ -10,6 +10,11 @@ FROM tb_personagem
 JOIN tb_inventario
 ON tb_personagem.id = tb_inventario.id_personagem;
 
+/* Exemplo de teste
+SELECT *
+FROM vw_personagem_inventario
+*/
+
 -- View de Mapa
 CREATE VIEW vw_mapa AS
 SELECT id, nome FROM tb_mapa;
