@@ -131,7 +131,6 @@ create table tb_raca_atlante(
 	IND_furtividade int not null,
 	IND_velocidade int not null,
 	id_raca int not null,
-	id_personagem int not null,
 	nome varchar(10) not null ,
 	constraint fk_id_raca foreign key(id_raca) references tb_raca (id)
 );
