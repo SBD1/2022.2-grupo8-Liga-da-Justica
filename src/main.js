@@ -380,9 +380,11 @@ const main = async () => {
         }
       }
       if (m == 5) {
+        const atq= await api.calcular_ataque(player.id, result.arma_atual)
+        console.log(atq)
         console.log(
           `\nSeus dados:\nnome: ${result.nome} \nEXP: ${result.experiencia}, \nQuantidade de vida: ${result.qtd_pontosdevida} 
-           \nQuantidade de defesa: ${result.qtd_defesa} \nQuantidade de ataque: ${result.qtd_ataque} \nQuantidade de honra: ${result.qtd_honra}`
+           \nQuantidade de defesa: ${result.qtd_defesa} \nQuantidade de ataque: ${atq.calcular_ataque} \nQuantidade de honra: ${result.qtd_honra}`
         );
         await sleep(3);
       }

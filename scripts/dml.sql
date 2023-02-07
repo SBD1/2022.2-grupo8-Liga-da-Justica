@@ -200,7 +200,7 @@ insert into tb_raca_humano(IND_carisma, IND_percepcao, IND_furtividade, id_raca,
 --raca homi magi 
 insert into tb_raca_homi_magi(IND_magia, IND_percepcao, IND_velocidade, id_raca, nome) values (4, 2, 6, 2, 'Mago');
 --raca atlante
-insert into tb_raca_atlante(IND_forca, IND_furtividade, IND_velocidade, id_raca, id_personagem, nome) values (1, 2, 2, 4, 4, 'Atlante');
+insert into tb_raca_atlante(IND_forca, IND_furtividade, IND_velocidade, id_raca, nome) values (1, 2, 2, 4, 'Atlante');
 --raca amazonas
 insert into tb_raca_amazonas(IND_forca, IND_carisma, IND_velocidade, id_raca, nome) values (3, 4, 4, 3, 'Amazonas'); 
 --raca alien
