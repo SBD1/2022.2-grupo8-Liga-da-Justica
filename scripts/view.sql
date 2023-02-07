@@ -15,6 +15,14 @@ SELECT *
 FROM vw_personagem_inventario
 */
 
+-- View que mostra os itens e o npc
+CREATE VIEW vw_itens_npc AS
+SELECT tb_item.id, tb_item.nome, tb_item.descricao, tb_item.valor, tb_item.min_level, 
+       tb_npc_mercador.nome AS nome_npc, tb_npc_mercador.tipo, tb_npc_mercador.req_honra_min, 
+       tb_npc_mercador.req_honra_max, tb_npc_mercador.desconto
+FROM tb_item
+JOIN tb_npc_mercador ON tb_item.id = tb_npc_mercador.id_instancia_item
+
 -- View de Mapa
 CREATE VIEW vw_mapa AS
 SELECT id, nome FROM tb_mapa;
