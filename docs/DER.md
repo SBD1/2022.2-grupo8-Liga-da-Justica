@@ -6,6 +6,7 @@
 |26/11/2022|  1.1   | [João Victor](https://github.com/CorreiaJV),  [Matheus Soares](https://github.com/MtsSrs),  [Matheus Perillo](https://github.com/MatheusPerillo), [Vitor Manoel](https://github.com/Vitormanoel17) , [Iago Cabral](https://github.com/iagocabral) | Correção do documento DER | 
 |27/11/2022|  1.2   | [João Victor](https://github.com/CorreiaJV) | Adição introdução DER | 
 |16/01/2023|  1.3   | [Vitor Manoel](https://github.com/Vitormanoel17) | Correção do documento DER | 
+|06/02/2023|  1.4   | [Matheus Perillo](https://github.com/MatheusPerillo) | Atualização do documento e diagrama DER |
 
 # Diagrama Entidade-Relacionamento
 
