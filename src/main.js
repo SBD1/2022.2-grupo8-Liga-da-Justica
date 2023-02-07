@@ -232,7 +232,7 @@ const main = async () => {
         regiao = findPrevRegiao(posicao.nome);
       } else {
         m = askAndReturn(
-          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Ver inventario"
+          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Ver inventario\n"
         );
       }
       if (m == 1) {
@@ -286,7 +286,6 @@ const main = async () => {
       }
       if (m == 5) {
         const atq= await api.calcular_ataque(player.id, result.arma_atual)
-        console.log(atq)
         console.log(
           `\nSeus dados:\nnome: ${result.nome} \nEXP: ${result.experiencia}, \nQuantidade de vida: ${result.qtd_pontosdevida} 
            \nQuantidade de defesa: ${result.qtd_defesa} \nQuantidade de ataque: ${atq.calcular_ataque} \nQuantidade de honra: ${result.qtd_honra}`
