@@ -197,7 +197,8 @@ const main = async () => {
           break;
         case "Mercador":
           
-          mercador(player.id,npc.id);
+          //console.log(npc.idNpc)
+          await mercador(player.id,npc.idNpc);
 
           break;
           
