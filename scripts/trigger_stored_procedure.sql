@@ -274,55 +274,45 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger para atualizar o tempo de outra trigger
-
-CREATE OR REPLACE FUNCTION tg_atualizaTempo_inimigo()
-RETURNS TRIGGER AS $$
-BEGIN
-   NEW.tempo = NOW(); 
-   RETURN NEW;
-END;
-$$ language 'plpgsql';
-
-CREATE TRIGGER tg_atualizaTempo_inimigo BEFORE UPDATE
-ON tb_npc_inimigo  FOR EACH ROW EXECUTE PROCEDURE 
-tg_atualizaTempo_inimigo();
-
-
--- Trigger respawn de Inimigo
-
-create or replace function tg_inimigo_morte() returns trigger as $$
-declare
- tempoAtual timestamp;
+/* Função de respawn de acordo com a vida (not working well)
+CREATE OR REPLACE FUNCTION tg_inimigo_morte() RETURNS TRIGGER AS $$
+DECLARE
  id_regiaoAntiga int;
-begin 
-	tempoAtual = clock_timestamp();
-	select id_regiao from tb_npc where id = new.id_npc into id_regiaoAntiga;	
-
-	if(new.vida = 0) then	
-		update tb_npc 
-		set id_regiao = '101'
-		where id = new.id_npc;
+ tempoAtual TIMESTAMP;
+BEGIN 
+	SELECT NOW() INTO tempoAtual;
+	select id_regiao into id_regiaoAntiga from tb_npc where id = new.id_npc;
 	
-		raise notice 'Dormi';
-		PERFORM pg_sleep(15);
-		raise notice 'voltou a vida!!';
+	IF (NEW.vida = 0) THEN	
+		UPDATE tb_npc SET id_regiao = 101 WHERE id = NEW.id_npc;
+		raise notice 'entrei no 1 if';
+	END IF;
 	
-	end if;
+	IF (NEW.vida = 0 and (extract(minute from age(tempoAtual, (SELECT tempo FROM tb_npc_inimigo WHERE id = NEW.id_npc))) >= 5)) then
 	
-		new.vida := 100;	
-		update tb_npc 
-		set id_regiao = id_regiaoAntiga
-		where id = new.id_npc;
+		
+		UPDATE tb_npc SET id_regiao = id_regiaoAntiga WHERE id = new.id_npc;
+		new.vida := 100;
+		raise notice 'entrei no 2 if';
+	END IF;
 
-	return new;
-end;
-$$ language plpgsql;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
-create trigger tg_inimigo_morte
-before update on tb_npc_inimigo
-for each row execute procedure tg_inimigo_morte();
 
+update tb_npc_inimigo 
+	set vida = 0 where id_npc = 14
+	
+update tb_npc_inimigo 
+	set vida = 30 where id_npc = 8
+
+-Trigger de respawn de acordo com vida (not working well)
+CREATE TRIGGER tg_inimigo_morte
+BEFORE UPDATE ON tb_npc_inimigo
+FOR EACH ROW 
+EXECUTE FUNCTION tg_inimigo_morte();
+*/
 
 -- Function para verificar se o jogador possui a arma que deseja selecionar
 CREATE OR REPLACE FUNCTION selecionar_arma(id_p int, id_arma int) returns void as $$
