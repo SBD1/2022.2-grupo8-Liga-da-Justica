@@ -18,6 +18,10 @@ function askAndReturn(texto) {
   return question(texto);
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms *1000));
+}
+
 function findProxRegiao(regiaoAtual) {
   let obj = {};
   switch (regiaoAtual) {
@@ -38,7 +42,7 @@ function findProxRegiao(regiaoAtual) {
       obj.pos = 4;
       break;
     default:
-      return "região não existe";
+      return "regiao não existe";
   }
   return obj;
 }
@@ -63,7 +67,7 @@ function findPrevRegiao(regiaoAtual) {
       obj.pos = 0;
       break;
     default:
-      return "região não existe";
+      return "regiao não existe";
   }
   return obj;
 }
@@ -88,10 +92,10 @@ const main = async () => {
       const sexo = askAndReturn("\nEscolha o sexo do seu personagem:\n0- Masculino\n1- Feminino\n");
       const classe = askAndReturn("\nEscolha a classe do seu personagem:\n1- Velocista\n2- Magico\n3- Combatente\n4- Detetive\n5- Brutamonte\n");
       const faccao = askAndReturn("\nEscolha a faccao do seu personagem:\n1- Heroi\n2- Vilao\n");
-      const raca = askAndReturn("\nEscolha a raca do seu personagem:\n1- Humano\n2- Homi Magi\n3- Amazonas\n4- Atlante\n5- Alien\n"); 
-      console.log('Seu personagem foi criado com sucesso!');
+      const raca = askAndReturn("\nEscolha a raca do seu personagem:\n1- Humano\n2- Homi Magi\n3- Amazonas\n4- Atlante\n5- Alien\n");
       await api.criarPersonagem(nome, sexo, classe, faccao, raca);
-
+      console.log('\n\nSeu personagem foi criado com sucesso!\n\n');
+      await sleep(3);
     } catch (error) {
       console.log(error);
     }
@@ -102,7 +106,7 @@ const main = async () => {
     try {
       let res = await api.createTables();
       if (res) {
-        console.log("Tabelas criadas com sucesso");
+        console.log("\n\nTabelas criadas com sucesso");
       }
     } catch (error) {
       console.log(error);
@@ -111,7 +115,8 @@ const main = async () => {
       let res = await api.populateTables();
       let trg = await api.createTriggers();
       if (res) {
-        console.log("Dados inseridos com sucesso");
+        console.log("Dados inseridos com sucesso\n\n");
+        await sleep(3);
       }
     } catch (error) {
       console.log(error);
@@ -137,7 +142,8 @@ const main = async () => {
           posicao.posicao_y
         );
 
-        console.log("Bem-vindo " + player.nome);
+        console.log("\n\nBem-vindo " + player.nome + "\n\n");
+        await sleep(3);
         break;
       } catch (error) {
         console.log(error);
@@ -158,39 +164,45 @@ const main = async () => {
       mapa(posicao.posicao_x, posicao.posicao_y);
 
       console.log(
-        `Você está em '${posicao.nome} (${posicao.posicao_x}, ${posicao.posicao_y})'\n`
+        `voce está em '${posicao.nome} (${posicao.posicao_x}, ${posicao.posicao_y})'\n`
       );
 
       switch (npc.tipo) {
         case "Inimigo":
           const ini = await api.checaInimigo(npc.idNpc);
-          console.log("\nVocê encontrou um inimigo!");
+          console.log("\nvoce encontrou um inimigo!");
+          await sleep(2);
           console.log(
-            `Dados do inimigo:\n 'nome: ${ini.nome} Força de ataque: ${ini.dano},EXP: ${ini.experiencia})'\n`
+            `\nDados do inimigo:\n 'nome: ${ini.nome} Força de ataque: ${ini.dano},EXP: ${ini.experiencia}'\n`
           );
+          await sleep(2);
           let i = askAndReturn(
-            " \nO que você irá fazer?\n 1- Lutar\n2- Fugir\n"
+            " \nO que voce ira fazer?\n 1- Lutar\n2- Fugir\n"
           );
           if (i == 1) {
 
-            
+
             i = askAndReturn("Visualizar Inventario antes da batalha (S/N): ");
 
-            if(i.toLowerCase() == 's') await inventario(player.id);
+            if (i.toLowerCase() == 's') await inventario(player.id);
 
-            console.log("Hora do duelo");
-            const batalha= await api.batalhar(result.id,npc.idNpc);
-            if(batalha.vencedor== "NPC"){
-              console.log("Você perdeu a batalha para:" + ini.nome )
+            console.log("\n\nHora do duelo\n\n");
+            await sleep(2);
+            const batalha = await api.batalhar(result.id, npc.idNpc);
+            if (batalha.vencedor == "NPC") {
+              console.log("\n\nvoce perdeu a batalha para:" + ini.nome + "\n\n")
+              await sleep(3);
             }
-            if(batalha.vencedor== "Personagem"){
-              console.log("Você venceu:" + ini.nome )
+            if (batalha.vencedor == "Personagem") {
+              console.log("\n\nvoce venceu:" + ini.nome+ "\n\n")
+              await sleep(3);
             }
           }
-          if(i==2){
-            console.log("Você Fugiu!")
+          if (i == 2) {
+            console.log("\n\nvoce Fugiu!\n\n")
+            await sleep(3);
             console.log(
-              `Você está em '${posicao.nome} (${posicao.posicao_x}, ${posicao.posicao_y})'\n`
+              `voce está em '${posicao.nome} (${posicao.posicao_x}, ${posicao.posicao_y})'\n`
             );
           }
 
@@ -201,25 +213,26 @@ const main = async () => {
           await mercador(player.id,npc.idNpc);
 
           break;
-          
+
         case "Mentor":
-          console.log("Você encontrou um mentor");
+          console.log("\n\nvoce encontrou um mentor\n\n");
+          await sleep(3);
           break;
       }
 
       if (posicao.posicao_x == 4 && posicao.posicao_y == 4) {
         m = askAndReturn(
-          "1- Andar para frente\n2- Andar para trás\n3- Andar para cima\n4- Andar para baixo\n5- Ir para próxima região\n"
+          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Ver inventário\n7- Ir para proxima regiao\n"
         );
         regiao = findProxRegiao(posicao.nome);
       } else if (posicao.posicao_x == 0 && posicao.posicao_y == 0) {
         m = askAndReturn(
-          "1- Andar para frente\n2- Andar para trás\n3- Andar para cima\n4- Andar para baixo\n5- Voltar para a região anterior\n"
+          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Ver inventário\n7- Voltar para a regiao anterior\n"
         );
         regiao = findPrevRegiao(posicao.nome);
       } else {
         m = askAndReturn(
-          "1- Andar para frente\n2- Andar para trás\n3- Andar para cima\n4- Andar para baixo\n"
+          "1- Andar para frente\n2- Andar para tras\n3- Andar para cima\n4- Andar para baixo\n5- Ver meus dados\n6- Ver inventario\n"
         );
       }
       if (m == 1) {
@@ -272,6 +285,18 @@ const main = async () => {
         }
       }
       if (m == 5) {
+        const atq= await api.calcular_ataque(player.id, result.arma_atual)
+        console.log(
+          `\nSeus dados:\nnome: ${result.nome} \nEXP: ${result.experiencia}, \nQuantidade de vida: ${result.qtd_pontosdevida} 
+           \nQuantidade de defesa: ${result.qtd_defesa} \nQuantidade de ataque: ${atq.calcular_ataque} \nQuantidade de honra: ${result.qtd_honra}`
+        );
+        await sleep(3);
+      }
+      if (m == 6) {
+        await inventario(player.id)
+        
+      }
+      if (m == 7) {
         try {
           let pos = await api.findIdPosicao(
             regiao.pos,

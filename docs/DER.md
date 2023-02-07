@@ -16,8 +16,8 @@ O diagrama fornece uma visão lógica do banco de dados, fornecendo um conceito 
 
  </p>
 
-<img src= 'imgs/DER_V1.3.drawio.png'> </img>
+<img src= 'imgs/DER_v.Final.png'> </img>
 <div style="text-align: center">
-<p>Figura 1: DER v.1.3</p>
+<p>Figura 1: DER versão final</p>
 <p style="margin-top: -1%; font-size: 12px">Fonte: Elaboração própria</p>
 </div>

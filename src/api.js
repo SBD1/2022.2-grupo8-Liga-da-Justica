@@ -274,6 +274,18 @@ class Api {
     return response;
   };
 
+  calcular_ataque = async (id_personagem, arma_atual) => {
+    let response = [];
+    await this.db
+      .query(
+        `SELECT Calcular_ataque(${id_personagem}, ${arma_atual}); `
+      ).then((results) => {
+        response = results.rows;
+      });
+   
+    return response[0];
+  };
+
   findBatalha = async (id_personagem, id_inimigo) => {
     let response = [];
     await this.db
