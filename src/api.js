@@ -247,6 +247,18 @@ class Api {
     return response[0];
   };
 
+  verificarCompra = async (id_p,id_item,id_npc) => {
+
+    await this.db
+      .query(
+        `select verificar_compra('${id_p}','${id_item}','${id_npc}')
+        `
+      ).then((result) => {
+        if(result.rowCount == 0) console.log("Voce nao possui saldo ou honra suficiente");
+
+      })
+  };
+
   batalhar = async (id_personagem, id_inimigo) => {
     let response = [];
     

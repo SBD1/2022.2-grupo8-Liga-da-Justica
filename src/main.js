@@ -2,6 +2,7 @@ import Api from "./api.js";
 import { question } from "readline-sync";
 import { mapa } from "./mapa.js";
 import { inventario } from "./Inventario.js";
+import { mercador } from "./Mercador.js";
 
 class Player {
   constructor(id, nome, id_localAtual, pos_x, pos_y) {
@@ -207,106 +208,10 @@ const main = async () => {
 
           break;
         case "Mercador":
-          console.log("\n\nvoce encontrou um mercador\n\n");
-          await sleep(3);
-          let q = askAndReturn('1- Negociar\n2- Sair\n');
-          if (q == 1) {
-            console.log('\nEscolha qual item deseja negociar:\n')
-            let n = askAndReturn('1- Equipamento\n2- Consumivel\n');
-            if (n == 1) {
-              console.log('\nEscolha qual desses equipamentos deseja negociar:');
-              let i = askAndReturn('\n1- Armas\n2- Armaduras\n3- Acessorios\n');
-              if (i == 1) {
-                console.log('\nEscolha uma dessas armas:\n');
-                let a = askAndReturn('1- Espada\n2- Pistola\n3- Bastao longo\n4- Tridente\n5- Arco e flecha\n6- Soco ingles\n');
-                if (a == 1) {
-                  console.log('Voce adquiriu a arma: a\n');
-                }
-                if (a == 2) {
-                  console.log('Voce adquiriu a arma: b\n');
-                }
-                if (a == 3) {
-                  console.log('Voce adquiriu a arma: c\n');
-                }
-                if (a == 4) {
-                  console.log('Voce adquiriu a arma: d\n');
-                }
-                if (a == 5) {
-                  console.log('Voce adquiriu a arma: e\n');
-                }
-                if (a == 6) {
-                  console.log('Voce adquiriu a arma: f\n');
-                }
-              }
-              if (i == 2) {
-                console.log('\nEscolha uma dessas armaduras:\n');
-                let a = askAndReturn('1- Capacete de combate\n2- Coleto balistico\n3- Armadura completa balistica\n4- Amvabraco de titanio\n5- joelheira comum\n');
-                if (a == 1) {
-                  console.log('Voce adquiriu a armadura: a\n');
-                }
-                if (a == 2) {
-                  console.log('Voce adquiriu a armadura: b\n');
-                }
-                if (a == 3) {
-                  console.log('Voce adquiriu a armadura: c\n');
-                }
-                if (a == 4) {
-                  console.log('Voce adquiriu a armadura: d\n');
-                }
-                if (a == 5) {
-                  console.log('Voce adquiriu a armadura: e\n');
-                }
-                if (a == 6) {
-                  console.log('Voce adquiriu a armadura: f\n');
-                }
-              }
-              if (i == 3) {
-                console.log('\nEscolha um desses acessorios:\n');
-                let a = askAndReturn('1- Capa usada do Batman\n2- Capa usada do Superman\n3- Braceletes usados da Mulher Maravilha\n4- Mascara capanga coringa\n5- Cartola magica\n');
-                if (a == 1) {
-                  console.log('Voce adquiriu o acessorio: a\n');
-                }
-                if (a == 2) {
-                  console.log('Voce adquiriu o acessorio: b\n');
-                }
-                if (a == 3) {
-                  console.log('Voce adquiriu o acessorio: c\n');
-                }
-                if (a == 4) {
-                  console.log('Voce adquiriu o acessorio: d\n');
-                }
-                if (a == 5) {
-                  console.log('Voce adquiriu o acessorio: e\n');
-                }
-                if (a == 6) {
-                  console.log('Voce adquiriu o acessorio: f\n');
-                }
-              }
-            }
+          
+          //console.log(npc.idNpc)
+          await mercador(player.id,npc.idNpc);
 
-            if (n == 2) {
-              console.log('\nEscolha qual desses consumiveis deseja negociar:');
-              let e = askAndReturn('\n1- Pocao de vida\n2- Tonico\n3- Injecao de adrenalina\n4- Pocao magica\n5- Band-Aid\n');
-              if (e == 1) {
-                console.log('Voce adquiriu o consumivel: a\n');
-              }
-              if (e == 2) {
-                console.log('Voce adquiriu o consumivel: b\n');
-              }
-              if (e == 3) {
-                console.log('Voce adquiriu o consumivel: c\n');
-              }
-              if (e == 4) {
-                console.log('Voce adquiriu o consumivel: d\n');
-              }
-              if (e == 5) {
-                console.log('Voce adquiriu o consumivel: e\n');
-              }
-            }
-          }
-          if (q == 2) {
-            console.log('Voce saiu da negociacao');
-          }
           break;
 
         case "Mentor":

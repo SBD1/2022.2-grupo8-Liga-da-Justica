@@ -1,3 +1,28 @@
+-- View que mostra dados do personagem e do inventario
+CREATE VIEW vw_personagem_inventario AS
+SELECT tb_personagem.experiencia, tb_personagem.nivel, tb_personagem.nome, tb_personagem.qtd_pontosdevida, 
+       tb_personagem.sexo, tb_personagem.qtd_pontosdeestamina, tb_personagem.qtd_honra, tb_personagem.qtd_defesa, 
+       tb_personagem.qtd_ataque, tb_personagem.qtd_mortes, tb_personagem.id_poder, tb_personagem.id_Local_Atual, 
+       tb_personagem.id_ajudante, tb_personagem.id_mentor, tb_personagem.id_classe, tb_personagem.id_faccao, 
+       tb_personagem.id_raca, tb_personagem.arma_atual, tb_personagem.armadura_atual, tb_personagem.acessorio_atual,
+       tb_inventario.qtd_atual, tb_inventario.qtd_dinheiro
+FROM tb_personagem
+JOIN tb_inventario
+ON tb_personagem.id = tb_inventario.id_personagem;
+
+/* Exemplo de teste
+SELECT *
+FROM vw_personagem_inventario
+*/
+
+-- View que mostra os itens e o npc
+CREATE VIEW vw_itens_npc AS
+SELECT tb_item.id, tb_item.nome, tb_item.descricao, tb_item.valor, tb_item.min_level, 
+       tb_npc_mercador.nome AS nome_npc, tb_npc_mercador.tipo, tb_npc_mercador.req_honra_min, 
+       tb_npc_mercador.req_honra_max, tb_npc_mercador.desconto
+FROM tb_item
+JOIN tb_npc_mercador ON tb_item.id = tb_npc_mercador.id_instancia_item
+
 -- View de Mapa
 CREATE VIEW vw_mapa AS
 SELECT id, nome FROM tb_mapa;

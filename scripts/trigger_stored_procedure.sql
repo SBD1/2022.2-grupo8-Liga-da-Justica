@@ -280,55 +280,45 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger para atualizar o tempo de outra trigger
-
-CREATE OR REPLACE FUNCTION tg_atualizaTempo_inimigo()
-RETURNS TRIGGER AS $$
-BEGIN
-   NEW.tempo = NOW(); 
-   RETURN NEW;
-END;
-$$ language 'plpgsql';
-
-CREATE TRIGGER tg_atualizaTempo_inimigo BEFORE UPDATE
-ON tb_npc_inimigo  FOR EACH ROW EXECUTE PROCEDURE 
-tg_atualizaTempo_inimigo();
-
-
--- Trigger respawn de Inimigo
-
-create or replace function tg_inimigo_morte() returns trigger as $$
-declare
- tempoAtual timestamp;
+/* Função de respawn de acordo com a vida (not working well)
+CREATE OR REPLACE FUNCTION tg_inimigo_morte() RETURNS TRIGGER AS $$
+DECLARE
  id_regiaoAntiga int;
-begin 
-	tempoAtual = clock_timestamp();
-	select id_regiao from tb_npc where id = new.id_npc into id_regiaoAntiga;	
-
-	if(new.vida = 0) then	
-		update tb_npc 
-		set id_regiao = '101'
-		where id = new.id_npc;
+ tempoAtual TIMESTAMP;
+BEGIN 
+	SELECT NOW() INTO tempoAtual;
+	select id_regiao into id_regiaoAntiga from tb_npc where id = new.id_npc;
 	
-		raise notice 'Dormi';
-		PERFORM pg_sleep(15);
-		raise notice 'voltou a vida!!';
+	IF (NEW.vida = 0) THEN	
+		UPDATE tb_npc SET id_regiao = 101 WHERE id = NEW.id_npc;
+		raise notice 'entrei no 1 if';
+	END IF;
 	
-	end if;
+	IF (NEW.vida = 0 and (extract(minute from age(tempoAtual, (SELECT tempo FROM tb_npc_inimigo WHERE id = NEW.id_npc))) >= 5)) then
 	
-		new.vida := 100;	
-		update tb_npc 
-		set id_regiao = id_regiaoAntiga
-		where id = new.id_npc;
+		
+		UPDATE tb_npc SET id_regiao = id_regiaoAntiga WHERE id = new.id_npc;
+		new.vida := 100;
+		raise notice 'entrei no 2 if';
+	END IF;
 
-	return new;
-end;
-$$ language plpgsql;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
-create trigger tg_inimigo_morte
-before update on tb_npc_inimigo
-for each row execute procedure tg_inimigo_morte();
 
+update tb_npc_inimigo 
+	set vida = 0 where id_npc = 14
+	
+update tb_npc_inimigo 
+	set vida = 30 where id_npc = 8
+
+-Trigger de respawn de acordo com vida (not working well)
+CREATE TRIGGER tg_inimigo_morte
+BEFORE UPDATE ON tb_npc_inimigo
+FOR EACH ROW 
+EXECUTE FUNCTION tg_inimigo_morte();
+*/
 
 -- Function para verificar se o jogador possui a arma que deseja selecionar
 CREATE OR REPLACE FUNCTION selecionar_arma(id_p int, id_arma int) returns void as $$
@@ -393,3 +383,44 @@ BEGIN
    
 END;
 $$ LANGUAGE plpgsql;
+
+
+create or replace function verificar_compra(id_p int, item int, npc int) returns void as $$
+
+declare 
+	inventario int;
+	valor_item int;
+	saldo int;
+	desconto_npc int;
+	req_honra int;
+	min_honra int;
+	id_mercador int;
+	count_npc int;
+begin
+ 	
+	--select tnm.id from tb_npc tn, tb_npc_mercador tnm  where tn.id = npc and tnm.id_npc = tn.id into id_mercador;
+	select id from tb_inventario ti where id_personagem  = id_p into inventario; 
+	select qtd_dinheiro from tb_inventario ti where id_personagem = id_p into saldo;
+	select valor from tb_item where id = item into valor_item;
+	select qtd_honra from tb_personagem tp where id = id_p into req_honra;
+	select desconto,req_honra_min from tb_npc_mercador where id_npc  = npc into desconto_npc, min_honra; 
+	
+	
+	select count(*) from tb_npc_mercador where id_npc = npc into count_npc;
+
+	if count_npc = 0 then
+		raise exception 'Algo ocorreu de errado na escolha de npc';
+	end if;
+
+	valor_item = valor_item - desconto_npc;
+
+	if ((saldo < valor_item) or (req_honra < min_honra)) then
+		raise exception 'Voce nao tem saldo ou honra suficiente';
+	else
+		insert into tb_instancia_item (id_item,id_inventario) values(item,inventario);
+		update tb_inventario set qtd_dinheiro = saldo - valor_item where id = inventario;
+		update tb_inventario set qtd_atual = qtd_atual + 1 where id = inventario;		
+	end if;
+	
+end;
+$$ language plpgsql;
