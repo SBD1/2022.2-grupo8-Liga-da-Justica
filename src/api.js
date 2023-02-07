@@ -254,7 +254,8 @@ class Api {
         `select verificar_compra('${id_p}','${id_item}','${id_npc}')
         `
       ).then((result) => {
-        if(result.rowCount == 0) console.log("Voce nao possui saldo ou honra suficiente");
+        //console.log(result)
+        if(result.rows[0].verificar_compra == 0) console.log("Voce nao possui saldo ou honra suficiente");
 
       })
   };

@@ -385,7 +385,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-create or replace function verificar_compra(id_p int, item int, npc int) returns void as $$
+create or replace function verificar_compra(id_p int, item int, npc int) returns int as $$
 
 declare 
 	inventario int;
@@ -409,18 +409,21 @@ begin
 	select count(*) from tb_npc_mercador where id_npc = npc into count_npc;
 
 	if count_npc = 0 then
-		raise exception 'Algo ocorreu de errado na escolha de npc';
-	end if;
+		raise notice 'Algo ocorreu de errado na escolha de npc';
+    return 0;
+  end if;
 
 	valor_item = valor_item - desconto_npc;
 
 	if ((saldo < valor_item) or (req_honra < min_honra)) then
-		raise exception 'Voce nao tem saldo ou honra suficiente';
+		raise notice 'Voce nao tem saldo ou honra suficiente';
+    return 0;
 	else
 		insert into tb_instancia_item (id_item,id_inventario) values(item,inventario);
 		update tb_inventario set qtd_dinheiro = saldo - valor_item where id = inventario;
 		update tb_inventario set qtd_atual = qtd_atual + 1 where id = inventario;		
 	end if;
 	
+  return 1;
 end;
 $$ language plpgsql;
